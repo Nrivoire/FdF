@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/27 20:09:44 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/27 21:23:44 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,9 +34,9 @@ void			make_segment(t_env *v)
 		while (++x < v->col)
 		{
 			if (x % v->col != 0 && x > 0)
-				put_segment(ft_make_cplx((x - 1 * 10), (y * 10)), ft_make_cplx((x * 10), (y * 10)), v, v->tab[x + v->li * y].color);
+				put_segment(ft_make_cplx(x - 1, y , 15), ft_make_cplx(x, y, 15), v, v->tab[x + v->col * y].color);
 			if (y % v->li != 0 && y > 0)
-				put_segment(ft_make_cplx((x * 10), (y - 1 * 10)), ft_make_cplx((x * 10), (y * 10)), v, v->tab[x + v->li * y].color);
+				put_segment(ft_make_cplx(x, y - 1, 15), ft_make_cplx(x, y, 15), v, v->tab[x + v->col * y].color);
 		}
 	}
 }

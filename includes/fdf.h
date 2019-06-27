@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/27 17:17:15 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/27 21:23:21 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,7 +98,7 @@ void				horizontal_kind(t_cplx c1, t_cplx c2, t_env *v, \
 void				swap_cplx(t_cplx *c1, t_cplx *c2);
 int					ft_absolu(int nb);
 void				ft_error(char *str);
-t_cplx				ft_make_cplx(double x, double y);
+t_cplx				ft_make_cplx(double x, double y, int zoom);
 
 void				ft_create_img(void *ptr, t_mlx_img *img, int w, int h);
 void				ft_pixel_put(t_mlx_img img, int x, int y, t_rgb color);
