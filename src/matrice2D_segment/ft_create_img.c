@@ -1,45 +1,22 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   hex_rgb.c                                        .::    .:/ .      .::   */
+/*   ft_create_img.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/06/20 17:51:01 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/28 18:55:07 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/06/19 18:55:24 by nrivoire     #+#   ##    ##    #+#       */
+/*   Updated: 2019/06/25 17:57:44 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char		*make_hex(char *hex)
+void	ft_create_img(void *ptr, t_mlx_img *img, int w, int h)
 {
-	int			len;
-	char		*tmp;
-	int			i;
-
-	i = -1;
-	len = ft_strlen(hex);
-	if (!hex)
-		return (ft_strdup("0xFFFFFF"));
-	tmp = ft_strnew(8);
-	while (hex[++i])
-		tmp[i] = hex[i];
-	i--;
-	while (++i < len)
-		tmp[i] = tmp[i - 1];
-	return (tmp);
-}
-
-t_rgb		hex_rgb(char *hex)
-{
-	t_rgb		color;
-
-	hex = make_hex(hex);
-	color.r = hex[6] + hex[7] * 16;
-	color.g = hex[4] + hex[5] * 16;
-	color.b = hex[2] + hex[3] * 16;
-	free(hex);
-	return (color);
+	img->ptr = mlx_new_image(ptr, w, h);
+	img->img = mlx_get_data_addr(img->ptr, &img->bpp, &img->s_l, &img->endian);
+	img->width = w;
+	img->height = h;
 }

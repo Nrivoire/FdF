@@ -6,7 +6,7 @@
 #    By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/06/14 18:19:22 by nrivoire     #+#   ##    ##    #+#        #
-#    Updated: 2019/06/25 18:20:42 by nrivoire    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/06/28 20:35:39 by nrivoire    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,23 +20,32 @@ NAME = fdf
 
 #	Sources
 # SRC_SUP = {dossiers dans src qui seront separe par une virgule}
-SRC_SUP = cplx_segment
+SRC_SUP = matrice2D_segment
 SRC_PATH = src
 SRC_NAME = main.c\
 		   list.c get_next_line.c fdf_parsing.c create_tab.c\
-		   cplx_segment/ft_absolu.c\
-		   cplx_segment/ft_error.c\
-		   cplx_segment/ft_make_cplx.c\
-		   cplx_segment/put_segment.c\
-		   cplx_segment/strai_horizontal.c\
-		   cplx_segment/strai_vertical.c\
-		   cplx_segment/swap_cplx.c\
-		   cplx_segment/vertical_kind.c\
-		   cplx_segment/horizontal_kind.c\
-		   cplx_segment/ft_create_img.c\
-		   cplx_segment/ft_pixel_put.c\
-		   cplx_segment/make_rgb.c\
-		   cplx_segment/hex_rgb.c\
+		   matrice2D_segment/ft_absolu.c\
+		   matrice2D_segment/ft_create_img.c\
+		   matrice2D_segment/ft_error.c\
+		   matrice2D_segment/ft_pixel_put.c\
+		   matrice2D_segment/hex_rgb.c\
+		   matrice2D_segment/ma_put_segment.c\
+		   matrice2D_segment/make_matrice.c\
+		   matrice2D_segment/make_rgb.c\
+
+#		   cplx_segment/ft_absolu.c\
+#		   cplx_segment/ft_error.c\
+#		   cplx_segment/ft_make_cplx.c\
+#		   cplx_segment/put_segment.c\
+#		   cplx_segment/strai_horizontal.c\
+#		   cplx_segment/strai_vertical.c\
+#		   cplx_segment/swap_cplx.c\
+#		   cplx_segment/vertical_kind.c\
+#		   cplx_segment/horizontal_kind.c\
+#		   cplx_segment/ft_create_img.c\
+#		   cplx_segment/ft_pixel_put.c\
+#		   cplx_segment/make_rgb.c\
+#		   cplx_segment/hex_rgb.c\
 
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 

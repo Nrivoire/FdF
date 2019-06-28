@@ -1,45 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   hex_rgb.c                                        .::    .:/ .      .::   */
+/*   ft_pixel_put.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/06/20 17:51:01 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/28 18:55:07 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/06/19 19:22:23 by nrivoire     #+#   ##    ##    #+#       */
+/*   Updated: 2019/06/19 22:25:22 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char		*make_hex(char *hex)
+void	ft_pixel_put(t_mlx_img img, int x, int y, t_rgb color)
 {
-	int			len;
-	char		*tmp;
-	int			i;
+	int t;
 
-	i = -1;
-	len = ft_strlen(hex);
-	if (!hex)
-		return (ft_strdup("0xFFFFFF"));
-	tmp = ft_strnew(8);
-	while (hex[++i])
-		tmp[i] = hex[i];
-	i--;
-	while (++i < len)
-		tmp[i] = tmp[i - 1];
-	return (tmp);
-}
-
-t_rgb		hex_rgb(char *hex)
-{
-	t_rgb		color;
-
-	hex = make_hex(hex);
-	color.r = hex[6] + hex[7] * 16;
-	color.g = hex[4] + hex[5] * 16;
-	color.b = hex[2] + hex[3] * 16;
-	free(hex);
-	return (color);
+	if (x < 0 || y < 0 || x >= img.width || y >= img.height)
+		return ;
+	t = y * img.s_l + x * 4;
+	img.img[t] = (char)(color.b);
+	img.img[t + 1] = (char)(color.g);
+	img.img[t + 2] = (char)(color.r);
+	img.img[t + 3] = (char)(color.a);
 }

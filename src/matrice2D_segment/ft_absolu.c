@@ -1,45 +1,19 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   hex_rgb.c                                        .::    .:/ .      .::   */
+/*   ft_absolu.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/06/20 17:51:01 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/28 18:55:07 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/06/19 17:12:01 by nrivoire     #+#   ##    ##    #+#       */
+/*   Updated: 2019/06/25 18:08:22 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char		*make_hex(char *hex)
+int		ft_absolu(int nb)
 {
-	int			len;
-	char		*tmp;
-	int			i;
-
-	i = -1;
-	len = ft_strlen(hex);
-	if (!hex)
-		return (ft_strdup("0xFFFFFF"));
-	tmp = ft_strnew(8);
-	while (hex[++i])
-		tmp[i] = hex[i];
-	i--;
-	while (++i < len)
-		tmp[i] = tmp[i - 1];
-	return (tmp);
-}
-
-t_rgb		hex_rgb(char *hex)
-{
-	t_rgb		color;
-
-	hex = make_hex(hex);
-	color.r = hex[6] + hex[7] * 16;
-	color.g = hex[4] + hex[5] * 16;
-	color.b = hex[2] + hex[3] * 16;
-	free(hex);
-	return (color);
+	return (nb < 0 ? -nb : nb);
 }
