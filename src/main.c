@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/30 15:24:40 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/30 16:42:36 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,10 +34,15 @@ void			make_segment(t_env *v)
 	max = v->li + v->col;
 	y = -1;
 	int sx, sy;
-	int	zoom;
+	double	zoom;
+	double	scale;
+
+//(tmp_x * cos(radian)) + (tmp_y * -sin(radian));
+//(tmp_x * sin(radian)) + (tmp_y * cos(radian));
 
 	sx = 305;
 	sy = 200;
+	scale = M_PI/6;
 	zoom = 10;
 	while (++y < v->li)
 	{
@@ -45,9 +50,9 @@ void			make_segment(t_env *v)
 		while (++x < v->col)
 		{
 			if (x % v->col != 0 && x > 0)
-				ma_put_segment(make_matrice(x - 1, y, M_PI/6, zoom), make_matrice(x, y, M_PI/6, zoom), v, v->tab[(x - 1) + v->col * y].color);
+				ma_put_segment(make_matrice(x - 1, y), make_matrice(x, y), v, v->tab[(x - 1) + v->col * y].color);
 			if (y % v->li != 0 && y > 0)
-				ma_put_segment(make_matrice(x, y - 1, M_PI/6, zoom), make_matrice(x, y, M_PI/6, zoom), v, v->tab[(x - 1) + v->col * y].color);
+				ma_put_segment(make_matrice(x, y - 1), make_matrice(x, y), v, v->tab[(x - 1) + v->col * y].color);
 		}
 	}
 }
