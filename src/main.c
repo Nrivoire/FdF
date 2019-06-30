@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/28 21:06:34 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/30 15:24:40 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,31 +27,58 @@ void			make_segment(t_env *v)
 {
 	int		y;
 	int		x;
-
-	int zoom;
+	int		max;
 	int elev;
-	int sx;
-	int sy;
-
-	sy = 20; //deplacement vertical
-	sx = 200; //deplacement horizontal
 
 	elev = -1; //bougement de l'elevation
-	zoom = 20;
-	
+	max = v->li + v->col;
 	y = -1;
+	int sx, sy;
+	int	zoom;
+
+	sx = 305;
+	sy = 200;
+	zoom = 10;
 	while (++y < v->li)
 	{
 		x = -1;
 		while (++x < v->col)
 		{
 			if (x % v->col != 0 && x > 0)
-				ma_put_segment(make_matrice((x - 1 ) * zoom + sx, ((y ) * zoom + sy) + v->tab[(x - 1) + v->col * y].point * elev), make_matrice((x ) * zoom + sx, ((y) * zoom + sy) + v->tab[x + v->col * y].point * elev), v, v->tab[x + v->col * y].color);
+				ma_put_segment(make_matrice(x - 1, y, M_PI/6, zoom), make_matrice(x, y, M_PI/6, zoom), v, v->tab[(x - 1) + v->col * y].color);
 			if (y % v->li != 0 && y > 0)
-				ma_put_segment(make_matrice((x ) * zoom + sx, (y - 1) * zoom + sy  + v->tab[x + v->col * (y - 1)].point * elev), make_matrice((x ) * zoom + sx, ((y ) * zoom + sy) + v->tab[x + v->col * y].point * elev), v, v->tab[x + v->col * y].color);
+				ma_put_segment(make_matrice(x, y - 1, M_PI/6, zoom), make_matrice(x, y, M_PI/6, zoom), v, v->tab[(x - 1) + v->col * y].color);
 		}
 	}
 }
+
+// void			make_segment(t_env *v)
+// {
+// 	int		y;
+// 	int		x;
+
+// 	int zoom;
+// 	int elev;
+
+// 	// x = scaling_in_x_direction(20, x, y); //deplacement vertical
+// 	// y = scaling_in_y_direction(20, x, y); //deplacement horizontal
+
+// 	elev = -1; //bougement de l'elevation
+// 	zoom = 20;
+	
+// 	y = -1;
+// 	while (++y < v->li)
+// 	{
+// 		x = -1;
+// 		while (++x < v->col)
+// 		{
+// 			if (x % v->col != 0 && x > 0)
+// 				ma_put_segment(make_matrice((x - 1 ) * zoom , ((y ) * zoom) + v->tab[(x - 1) + v->col * y].z * elev), make_matrice((x ) * zoom, ((y) * zoom) + v->tab[x + v->col * y].z * elev), v, v->tab[x + v->col * y].color);
+// 			if (y % v->li != 0 && y > 0)
+// 				ma_put_segment(make_matrice((x ) * zoom, (y - 1) * zoom  + v->tab[x + v->col * (y - 1)].z * elev), make_matrice((x ) * zoom, ((y ) * zoom) + v->tab[x + v->col * y].z * elev), v, v->tab[x + v->col * y].color);
+// 		}
+// 	}
+// }
 
 // void			make_segment(t_env *v)
 // {

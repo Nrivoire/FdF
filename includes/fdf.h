@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/28 20:51:21 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/30 15:15:22 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,7 @@
 # include "../minilibx_macos/mlx.h"
 # include "get_next_line.h"
 # include <unistd.h>
+# include <math.h>
 
 /*
 **-----------------------------STRUCT MAKE SEGMENT------------------------------
@@ -117,7 +118,9 @@ typedef struct		s_lst
 
 typedef struct		s_point
 {
-	int				point;
+	int				z;
+	int				x;
+	int				y;
 	t_rgb			color;
 }					t_point;
 
@@ -160,7 +163,7 @@ t_rgb				hex_rgb(char *hex);
 */
 
 void				ft_error(char *str);
-t_mat				make_matrice(double x, double y);
+t_mat				make_matrice(double x, double y, double radian, double zoom);
 int					ft_absolu(int nb);
 void				ft_create_img(void *ptr, t_mlx_img *img, int w, int h);
 void				ft_pixel_put(t_mlx_img img, int x, int y, t_rgb color);
