@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/30 16:40:54 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/05 04:10:38 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,20 +53,20 @@ typedef struct		s_rgb
 	int				a;
 }					t_rgb;
 
-typedef struct		t_bressen
-{
-	int 			dx;
-	int				dy;
-	int				sx;
-	int				sy;
-	int				err;
-	int				e2;
-}					t_bressen;
+// typedef struct		t_bressen
+// {
+// 	int 			dx;
+// 	int				dy;
+// 	int				sx;
+// 	int				sy;
+// 	int				err;
+// 	int				e2;
+// }					t_bressen;
 
 typedef struct		s_mat
 {
-	double			mx;
-	double			my;
+	float			mx;
+	float			my;
 }					t_mat;
 
 /*
@@ -82,9 +82,10 @@ typedef struct		s_lst
 
 typedef struct		s_point
 {
-	int				z;
-	int				x;
-	int				y;
+	float			x;
+	float			y;
+	float			z;
+	int				inc;
 	t_rgb			color;
 }					t_point;
 
@@ -101,7 +102,7 @@ typedef struct		s_env
 */
 
 void				ft_error(char *str);
-t_mat				make_matrice(double x, double y);
+t_mat				make_matrice(float x, float y, float z);
 int					ft_absolu(int nb);
 void				ft_create_img(void *ptr, t_mlx_img *img, int w, int h);
 void				ft_pixel_put(t_mlx_img img, int x, int y, t_rgb color);
