@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/06 03:44:12 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/06 08:29:28 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,14 +38,16 @@ void			make_segment(t_env *v)
 	sx = 305;
 	sy = 200;
 	radian = M_PI/6;
-	zoom = 33;
+	zoom = 40;
 
 	int inc = -1;
 	int	max = v->li * v->col;
 	while (++inc < max)
 	{
+		printf("x = %d %d", v->tab[inc].x, v->col);
 		if ((int)v->tab[inc].x % v->col != 0 && v->tab[inc].x > 0)
 			ma_put_segment(matmul(v, inc - 1, zoom, radian), matmul(v, inc, zoom, radian), v, v->tab[inc].color);
+		printf("   y = %d %d\n", v->tab[inc].y, v->col);
 		if ((int)v->tab[inc].y % v->li != 0 && v->tab[inc].y > 0)
 			ma_put_segment(matmul(v, inc - v->col, zoom, radian), matmul(v, inc, zoom, radian), v, v->tab[inc].color);
 	}
@@ -78,6 +80,15 @@ void			make_segment(t_env *v)
 // 		}
 // 	}
 // }
+
+t_mat		make_matrice(float x, float y)
+{
+	t_mat m;
+
+	m.mx = x;
+	m.my = y;
+	return (m);
+}
 
 int				main(int av, char **ac)
 {

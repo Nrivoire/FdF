@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/06 03:36:57 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/06 08:25:37 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,15 +53,15 @@ typedef struct		s_rgb
 	int				a;
 }					t_rgb;
 
-// typedef struct		t_bressen
-// {
-// 	int 			dx;
-// 	int				dy;
-// 	int				sx;
-// 	int				sy;
-// 	int				err;
-// 	int				e2;
-// }					t_bressen;
+typedef struct		t_bressen
+{
+	int 			dx;
+	int				dy;
+	int				sx;
+	int				sy;
+	int				err;
+	int				e2;
+}					t_bressen;
 
 typedef struct		s_mat
 {
@@ -82,10 +82,9 @@ typedef struct		s_lst
 
 typedef struct		s_point
 {
-	float			x;
-	float			y;
+	int				x;
+	int				y;
 	float			z;
-	int				inc;
 	t_rgb			color;
 }					t_point;
 

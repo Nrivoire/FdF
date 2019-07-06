@@ -6,7 +6,7 @@
 #    By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/06/14 18:19:22 by nrivoire     #+#   ##    ##    #+#        #
-#    Updated: 2019/07/06 03:20:56 by nrivoire    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/07/06 08:27:03 by nrivoire    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -30,7 +30,7 @@ SRC_NAME = main.c\
 		   matrice2D_segment/ft_pixel_put.c\
 		   matrice2D_segment/hex_rgb.c\
 		   matrice2D_segment/ma_put_segment.c\
-		   matrice2D_segment/make_matrice.c\
+		   matrice2D_segment/matmul.c\
 		   matrice2D_segment/make_rgb.c\
 
 #		   cplx_segment/ft_absolu.c\
