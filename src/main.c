@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/06 08:29:28 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/07 01:50:28 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,18 +25,9 @@ void			do_win_and_img(t_env *v)
 
 void			make_segment(t_env *v)
 {
-	int elev;
-
-	elev = -1; //bougement de l'elevation
-	int sx, sy;
 	float	zoom;
 	float	radian;
-	
-//(x * cos(radian)) + (y * -sin(radian));
-//(x * sin(radian)) + (y * cos(radian));
 
-	sx = 305;
-	sy = 200;
 	radian = M_PI/6;
 	zoom = 40;
 
@@ -95,6 +86,9 @@ int				main(int av, char **ac)
 	t_env		*v;
 	int			fd;
 	t_lst		*lst;
+	//t_mat		c1;
+	//t_mat		c2;
+	//t_rgb		color;
 
 	av = 2;
 	fd = open(ac[1], O_RDONLY);
@@ -103,6 +97,9 @@ int				main(int av, char **ac)
 	do_win_and_img(v);
 	lst = fdf_parsing(v, fd);
 	create_struct_tab(lst, v);
+	//c1 = make_matrice(300, 600);
+	//c2 = make_matrice(500, 200);
+	//ma_put_segment(c1, c2, v, color);
 	make_segment(v);
 	//mlx_mouse_hook(v->mlx->win_ptr, button_press, v);
 	mlx_put_image_to_window(v->mlx, v->mlx->win_ptr, v->mlx->img.ptr, 0, 0);
