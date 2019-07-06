@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/05 04:34:52 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/06 03:44:12 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,33 +23,33 @@ void			do_win_and_img(t_env *v)
 	ft_create_img(v->mlx->mlx_ptr, &v->mlx->img, WIDTH, HEIGHT);
 }
 
-// void			make_segment(t_env *v)
-// {
-// 	int elev;
+void			make_segment(t_env *v)
+{
+	int elev;
 
-// 	elev = -1; //bougement de l'elevation
-// 	int sx, sy;
-// 	int	zoom;
-// 	double	radian;
+	elev = -1; //bougement de l'elevation
+	int sx, sy;
+	float	zoom;
+	float	radian;
 	
-// //(x * cos(radian)) + (y * -sin(radian));
-// //(x * sin(radian)) + (y * cos(radian));
+//(x * cos(radian)) + (y * -sin(radian));
+//(x * sin(radian)) + (y * cos(radian));
 
-// 	sx = 305;
-// 	sy = 200;
-// 	radian = M_PI/6;
-// 	zoom = 33;
+	sx = 305;
+	sy = 200;
+	radian = M_PI/6;
+	zoom = 33;
 
-// 	int inc = -1;
-// 	int	max = v->li * v->col;
-// 	while (++inc < max)
-// 	{
-// 		if (v->tab[inc].x % v->col != 0 && v->tab[inc].x > 0)
-// 			ma_put_segment(make_matrice(v->tab[inc].x - 1, v->tab[inc].y, zoom), make_matrice(v->tab[inc].x, v->tab[inc].y, zoom), v, v->tab[inc].color);
-// 		if (v->tab[inc].y % v->li != 0 && v->tab[inc].y > 0)
-// 			ma_put_segment(make_matrice(v->tab[inc].x, v->tab[inc].y - 1, zoom), make_matrice(v->tab[inc].x, v->tab[inc].y, zoom), v, v->tab[inc].color);
-// 	}
-// }
+	int inc = -1;
+	int	max = v->li * v->col;
+	while (++inc < max)
+	{
+		if ((int)v->tab[inc].x % v->col != 0 && v->tab[inc].x > 0)
+			ma_put_segment(matmul(v, inc - 1, zoom, radian), matmul(v, inc, zoom, radian), v, v->tab[inc].color);
+		if ((int)v->tab[inc].y % v->li != 0 && v->tab[inc].y > 0)
+			ma_put_segment(matmul(v, inc - v->col, zoom, radian), matmul(v, inc, zoom, radian), v, v->tab[inc].color);
+	}
+}
 
 // void			make_segment(t_env *v)
 // {
@@ -79,18 +79,6 @@ void			do_win_and_img(t_env *v)
 // 	}
 // }
 
-// int				button_press(int button, int x, int y, t_env *v)
-// {
-// 	if (button == 1)
-// 	{
-// 		v->mouv_x = v->mouv_x + x;
-// 		make_segment(v);
-// 	}
-// 	if (button == 3) //moulinette
-// 	{
-// 	return (0);
-// }
-
 int				main(int av, char **ac)
 {
 	t_env		*v;
@@ -104,7 +92,7 @@ int				main(int av, char **ac)
 	do_win_and_img(v);
 	lst = fdf_parsing(v, fd);
 	create_struct_tab(lst, v);
-	//make_segment(v);
+	make_segment(v);
 	//mlx_mouse_hook(v->mlx->win_ptr, button_press, v);
 	mlx_put_image_to_window(v->mlx, v->mlx->win_ptr, v->mlx->img.ptr, 0, 0);
 	mlx_loop(v->mlx->mlx_ptr);

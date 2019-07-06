@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/28 19:13:41 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/05 00:52:04 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/06 00:52:50 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,10 +46,10 @@ void	strai_vertical(t_mat m1, t_mat m2, t_env *v, t_rgb color)
 
 void	horizontal_kind(t_mat m1, t_mat m2, t_env *v, t_rgb color)
 {
-	double		dy;
-	double		dx;
+	float		dy;
+	float		dx;
 	int			tmp;
-	double		p;
+	float		p;
 
 	if (m1.mx > m2.mx)
 		swap_matrice(&m1, &m2);
@@ -63,9 +63,9 @@ void	horizontal_kind(t_mat m1, t_mat m2, t_env *v, t_rgb color)
 
 void	vertical_kind(t_mat m1, t_mat m2, t_env *v, t_rgb color)
 {
-	double		dy;
-	double		dx;
-	double		p;
+	float		dy;
+	float		dx;
+	float		p;
 	int			tmp;
 
 	if (m1.my > m2.my)
@@ -80,8 +80,8 @@ void	vertical_kind(t_mat m1, t_mat m2, t_env *v, t_rgb color)
 
 void	ma_put_segment(t_mat m1, t_mat m2, t_env *v, t_rgb color)
 {
-	double		dy;
-	double		dx;
+	float		dy;
+	float		dx;
 
 	if (m1.mx == m2.mx)
 		strai_vertical(m1, m2, v, color);

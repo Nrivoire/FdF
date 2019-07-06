@@ -6,7 +6,7 @@
 #    By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/04 11:42:11 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/06/25 17:58:10 by nrivoire    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/07/06 03:19:49 by nrivoire    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -53,7 +53,7 @@ OBJ = $(SRC:.c=.o)
 INCLUDE = libft.h
 
 #	Compiler
-CFLAGS = -Wall -Werror -Wextra -I. -c
+CFLAGS = -Wall -Werror -Wextra -I. -c 
 
 ################
 ##   COLORS   ##

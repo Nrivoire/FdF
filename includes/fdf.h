@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/05 04:10:38 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/06 03:36:57 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -102,12 +102,13 @@ typedef struct		s_env
 */
 
 void				ft_error(char *str);
-t_mat				make_matrice(float x, float y, float z);
 int					ft_absolu(int nb);
 void				ft_create_img(void *ptr, t_mlx_img *img, int w, int h);
 void				ft_pixel_put(t_mlx_img img, int x, int y, t_rgb color);
 t_rgb				make_rgb(int r, int g, int b, int a);
 t_rgb				hex_rgb(char *hex);
+
+t_mat				matmul(t_env *v, int inc, float zoom, float radian);
 void				ma_put_segment(t_mat m1, t_mat m2, t_env *v, t_rgb color);
 
 /*
