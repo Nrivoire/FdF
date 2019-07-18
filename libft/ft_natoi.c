@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   list.c                                           .::    .:/ .      .::   */
+/*   ft_natoi.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/06/20 12:33:47 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/25 14:57:59 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/07/12 01:10:47 by nrivoire     #+#   ##    ##    #+#       */
+/*   Updated: 2019/07/12 01:13:18 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void		add_elem(t_lst **elem, int z, t_rgb color)
+int		ft_natoi(char *str, size_t start)
 {
-	t_lst	*new;
-	t_lst	*tmp;
+	int nb;
+	int negatif;
 
-	if (!(new = (t_lst *)malloc(sizeof(t_lst))))
-		ft_error("error");
-	new->z = z;
-	new->color = color;
-	new->next = NULL;
-	if (*elem == NULL)
-		*elem = new;
-	else
+	negatif = 0;
+	nb = 0;
+	while ((str[start] >= 9 && str[start] <= 13) || (str[start] == 32))
+		start++;
+	if (str[start] == 45)
+		negatif = 1;
+	if (str[start] == 45 || str[start] == 43)
+		start++;
+	while (str[start] >= 48 && str[start] <= 57)
 	{
-		tmp = *elem;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
+		nb = nb * 10;
+		nb += ((int)str[start] - 48);
+		start++;
 	}
-}
-
-void		lstdel(t_lst *lst)
-{
-	if (lst->next)
-		lstdel(lst->next);
-	free(lst);
+	if (negatif == 1)
+		return (-nb);
+	else
+		return (nb);
 }

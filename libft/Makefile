@@ -6,7 +6,7 @@
 #    By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/04 11:42:11 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/07/06 03:19:49 by nrivoire    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/07/12 03:17:29 by nrivoire    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -28,10 +28,10 @@ SRC = ft_putchar.c ft_putchar_fd.c\
 	  ft_putendl.c ft_putendl_fd.c\
 	  ft_strcat.c ft_strncat.c ft_strlcat.c\
 	  ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isascii.c ft_isprint.c\
-	  ft_strchr.c ft_strrchr.c\
+	  ft_strchr.c ft_strrchr.c ft_strnchr.c\
 	  ft_memset.c ft_memcmp.c ft_memchr.c ft_memccpy.c ft_memcpy.c ft_memmove.c ft_memdel.c\
 	  ft_toupper.c ft_tolower.c\
-	  ft_atoi.c ft_itoa.c ft_range.c ft_swap.c\
+	  ft_atoi.c ft_natoi.c ft_itoa.c ft_range.c ft_swap.c\
 	  ft_strstr.c ft_strnstr.c\
 	  ft_bzero.c ft_strdup.c ft_memalloc.c\
 	  ft_strnew.c ft_strdel.c ft_strclr.c ft_strrev.c\

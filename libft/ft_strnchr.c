@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   make_rgb.c                                       .::    .:/ .      .::   */
+/*   ft_strnchr.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/06/19 21:00:11 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/20 22:11:52 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/07/12 03:15:34 by nrivoire     #+#   ##    ##    #+#       */
+/*   Updated: 2019/07/12 03:16:41 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-t_rgb	make_rgb(int r, int g, int b, int a)
+char	*ft_strnchr(const char *s, int c, size_t start)
 {
-	t_rgb	content;
-
-	content.r = r;
-	content.g = g;
-	content.b = b;
-	content.a = a;
-	return (content);
+	while (s[start])
+	{
+		if (s[start] == c)
+			return ((char *)s + start);
+		start++;
+	}
+	if (s[start] == '\0' && c == '\0')
+		return ((char *)s + start);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 17:51:01 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/08 21:42:50 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/16 07:44:44 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ char		*make_hex(char *hex)
 		return (ft_strdup("0xFFFFFF"));
 	tmp = ft_strnew(8);
 	while (hex[++i])
-		tmp[i] = hex[i];
+		tmp[i] = hex[i + 1];
 	i--;
 	while (++i < len)
 		tmp[i] = tmp[i - 1];
@@ -58,12 +58,9 @@ t_rgb		hex_rgb(char *hex)
 	t_rgb		color;
 
 	hex = make_hex(hex);
-	color.r = ctohex(hex[2])+ ctohex(hex[3]) * 16;
-	printf("r = %d  ",color.r);
-	color.g = ctohex(hex[4])+ ctohex(hex[5]) * 16;
-	printf("g = %d  ",color.g);
-	color.b = ctohex(hex[6])+ ctohex(hex[7]) * 16;
-	printf("b = %d\n",color.b);
+	color.r = ctohex(hex[2]) + ctohex(hex[3]) * 16;
+	color.g = ctohex(hex[4]) + ctohex(hex[5]) * 16;
+	color.b = ctohex(hex[6]) + ctohex(hex[7]) * 16;
 	free(hex);
 	return (color);
 }

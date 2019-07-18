@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 12:46:33 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/27 15:58:40 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/18 08:22:57 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,59 +23,77 @@ void			free_tab(char **tab, int n)
 	free(tab);
 }
 
-static size_t	ft_count_point(char const *s, char c)
+t_map			create_map(char **split, int x, int y, char *d)
 {
-	size_t	i;
-	size_t	j;
+	t_map		data;
 
-	j = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (i == 0 && s[i] != c)
-			j = 1;
-		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
-			j++;
-		i++;
-	}
-	return (j);
+	data.z = ft_atoi(split[x]);
+	data.color = hex_rgb(d ? d : "0xFFFFFF");
+	data.x = x;
+	data.y = y;
+	return (data);
 }
 
-void			check_map(char *line, t_env *v)
+t_map			*enlarge(t_env *v, int size, int inc)
 {
-	if (v->col == 0)
-		v->col = ft_count_point(line, ' ');
-	if (ft_count_point(line, ' ') != (size_t)v->col)
+	t_map		*maptmp;
+	int			i;
+
+	i = -1;
+	if (!(maptmp = (t_map *)ft_memalloc(sizeof(t_map) * (size + 1000))))
+		return (t_map*)(NULL);
+	while (++i <= inc)
 	{
-		ft_strdel(&line);
-		ft_error("Not a valid map.");
+		maptmp[i].x = v->tab[i].x;
+		maptmp[i].y = v->tab[i].y;
+		maptmp[i].z = v->tab[i].z;
+		maptmp[i].color = v->tab[i].color;
 	}
+	free(v->tab);
+	return (maptmp);
 }
 
-t_lst			*fdf_parsing(t_env *v, int fd)
+void			do_parsing(t_env *v, char *line, int inc)
+{
+	char		**split;
+	char		*d;
+	int			x;
+
+	split = ft_strsplit(line, ' ');
+	ft_strdel(&line);
+	x = -1;
+	while (++x < v->col)
+	{
+		d = ft_strchr(split[x], ',');
+		v->tab[++inc] = create_map(split, x, v->li, d);
+	}
+	free_tab(split, v->col);
+}
+
+void			fdf_parsing(t_env *v, int fd)
 {
 	char		*line;
-	char		**tab;
-	int			i;
-	char		*d;
-	t_lst		*begin;
+	int			size;
+	int			inc;
 
-	begin = NULL;
 	v->li = 0;
 	v->col = 0;
+	size = 1000;
+	inc = -1;
+	if (!(v->tab = (t_map *)ft_memalloc(sizeof(t_map) * size)))
+		return ;
 	while (get_next_line(fd, &line) == 1)
 	{
 		check_map(line, v);
-		tab = ft_strsplit(line, ' ');
-		ft_strdel(&line);
-		i = -1;
-		v->li++;
-		while (++i < v->col)
+		if (inc >= size)
 		{
-			d = ft_strchr(tab[i], ',');
-			add_elem(&begin, ft_atoi(tab[i]), hex_rgb(d ? d + 1 : "0xFFFFFF"));
+			v->tab = enlarge(v, size, inc);
+			size = size + 1000;
 		}
-		free_tab(tab, v->col);
+		do_parsing(v, line, inc);
+		v->li++;
+		inc = v->col * v->li - 1;
 	}
-	return (begin);
+	v->max = v->col * v->li;
+	iso_view(v);
 }

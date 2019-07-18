@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/13 16:51:20 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/25 17:57:35 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/12 03:16:51 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,6 +60,7 @@ size_t				ft_strlcat(char *dest, const char *src, size_t num);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
+char				*ft_strnchr(const char *s, int c, size_t start);
 char				*ft_strstr(const char *str, const char *to_find);
 char				*ft_strnstr(const char *str, const char *to_find,
 	size_t len);
@@ -89,6 +90,7 @@ size_t				ft_strlen(char const *str);
 int					*ft_range(int min, int max);
 size_t				ft_strspn(const char *s, const char *accept);
 size_t				ft_strcspn(const char *s, const char *reject);
+int					ft_natoi(char *str, size_t start);
 
 typedef struct		s_list
 {
