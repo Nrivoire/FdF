@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/13 16:51:20 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/12 03:16:51 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/24 22:42:01 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,6 +52,7 @@ char				*ft_strcpy(char *dest, char *src);
 char				*ft_strncpy(char *dest, char *src, unsigned int n);
 char				*ft_strdup(char *src);
 char				*ft_strjoin(char const *dest, char const *src);
+char				*ft_strjoinfree(char *dest, char *src);
 char				*ft_strcjoin(char const *dest, char const *src, char c);
 char				*ft_strcat(char *dest, const char *src);
 char				*ft_strncat(char *destination, const char *source,

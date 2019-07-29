@@ -87,11 +87,11 @@ sh ./42MapGenerator --no-update --no-timeout
 
 Using **NOAA** or **MGDS** as data provider allows you to find by name a country or a city (*MGDS only*). The coordinates are requested through the **Google Geocoding API**.
 
-Before downloading and generating a custom map, you can request for an online preview image through the **MGDS portal** which is opened in your default browser.
+Before downloading and generating a custom map, you can request for an online v->preview image through the **MGDS portal** which is opened in your default browser.
 
 
 
-## previews
+## v->previews
 
 <img src="http://i.imgur.com/uO6Egii.png?1" width="50%" /><img src="http://i.imgur.com/v5uApWX.png" width="50%" /><img src="http://i.imgur.com/pkOpXLX.png" width="50%" /><img src="http://i.imgur.com/n3K2lh4.png" width="50%" />
 

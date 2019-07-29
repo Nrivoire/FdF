@@ -6,86 +6,45 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/18 08:03:14 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/25 05:32:58 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			change_y(t_env *v, int key)
+void		free_env(t_env *v)
 {
-	int		inc;
-	int		y;
-
-	inc = -1;
-	if (key == DOWN)
-		y = 10;
-	else
-		y = -10;
-	while (++inc < v->max)
-		v->current[inc].my += y;
-	mlx_clear_window(v->mlx->mlx_ptr, v->mlx->win_ptr);
-	display_map(v);
-	return (0);
-}
-
-int			change_x(t_env *v, int key)
-{
-	int		inc;
-	int		x;
-
-	inc = -1;
-	if (key == RIGHT)
-		x = 10;
-	else
-		x = -10;
-	while (++inc < v->max)
-		v->current[inc].mx += x;
-	mlx_clear_window(v->mlx->mlx_ptr, v->mlx->win_ptr);
-	display_map(v);
-	return (0);
-}
-
-int			change_z(t_env *v, int key)
-{
-	int		i;
-	double	z;
-
-	i = -1;
-	if (key == MORE)
-		z = 0.5;
-	else
-		z = -0.5;
-	while (++i < v->max)
+	if (v)
 	{
-		if (v->tab[i].z > 0 || v->tab[i].z < 0)
-			v->current[i].mz = v->tab[i].z * z + v->current[i].mz;
+		if (v->prev)
+			free(v->prev);
+		if (v->current)
+			free(v->current);
+		if (v->mlx)
+		{
+			if (v->mlx->mlx_ptr)
+				free(v->mlx->mlx_ptr);
+			if (v->mlx->win_ptr)
+				free(v->mlx->win_ptr);
+			free(v->mlx);
+		}
+		if (v->img)
+		{
+			if (v->img->ptr)
+				free(v->img->ptr);
+			if (v->img->img_tmp)
+				free(v->img->img_tmp);
+			if (v->img->img)
+				free(v->img->img);
+			free(v->img);
+		}
 	}
-	mlx_clear_window(v->mlx->mlx_ptr, v->mlx->win_ptr);
-	display_map(v);
-	return (0);
 }
 
-int			key_press(int key, t_env *v)
+int			red_cross(t_env *v)
 {
-	if (key == RIGHT || key == LEFT)
-		change_x(v, key);
-	if (key == UP || key == DOWN)
-		change_y(v, key);
-	if (key == P)
-		parallel_view(v);
-	if (key == ESC)
-		exit(0);
-	if (key == I)
-		iso_view(v);
-	if (key == MORE || key == LESS)
-		change_z(v, key);
-	return (0);
-}
-
-int			red_cross(void)
-{
+	free_env(v);
 	exit(0);
 	return (0);
 }
@@ -95,7 +54,8 @@ int			main(int av, char **ac)
 	t_env	*v;
 	int		fd;
 
-	av = 2;
+	if (av != 2)
+		ft_error("usage : ./fdf map_sample.fdf");
 	fd = open(ac[1], O_RDONLY);
 	if (!(v = ft_memalloc(sizeof(t_env))))
 		ft_error("struct t_env ft_memalloc error");
@@ -104,10 +64,11 @@ int			main(int av, char **ac)
 	v->mlx->mlx_ptr = mlx_init();
 	v->mlx->win_ptr = mlx_new_window(v->mlx->mlx_ptr, WIDTH, HEIGHT, "fdf");
 	fdf_parsing(v, fd);
-	//exit(0);
-	display_map(v);
+	v->max = v->col * v->li;
+	iso_view(v);
 	mlx_key_hook(v->mlx->win_ptr, key_press, v);
 	mlx_hook(v->mlx->win_ptr, 17, (1L << 17), &red_cross, v);
 	mlx_loop(v->mlx->mlx_ptr);
-	free(v);
+	free_env(v);
+	return (0);
 }

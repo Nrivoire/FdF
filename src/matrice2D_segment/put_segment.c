@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/28 19:13:41 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/18 07:41:26 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/25 05:32:49 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,9 +21,9 @@ void			display_map(t_env *v)
 	ft_create_img(v->mlx->mlx_ptr, &v->mlx->img, WIDTH, HEIGHT);
 	while (++inc < v->max)
 	{
-		if (v->tab[inc].x % v->col != 0 && v->tab[inc].x > 0)
+		if (v->prev[inc].x % v->col != 0 && v->prev[inc].x > 0)
 			put_segment(v->current[inc - 1], v->current[inc], v);
-		if (v->tab[inc].y % v->li != 0 && v->tab[inc].y > 0)
+		if (v->prev[inc].y % v->li != 0 && v->prev[inc].y > 0)
 			put_segment(v->current[inc - v->col], v->current[inc], v);
 	}
 	mlx_put_image_to_window(v->mlx, v->mlx->win_ptr, v->mlx->img.ptr, 0, 0);

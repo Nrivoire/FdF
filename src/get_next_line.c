@@ -6,25 +6,24 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/27 13:27:22 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/16 07:43:18 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/25 03:52:23 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static char		*ft_static(char *tmp, char *lf_ov)
+static char			*ft_static(char *tmp, char *lf_ov)
 {
-	char	*leak;
+	char			*leak;
 
 	leak = ft_strjoin(lf_ov, tmp);
-	if (tmp)
-		free(tmp);
-	tmp = leak;
-	return (tmp);
+	free(tmp);
+	ft_strdel(&lf_ov);
+	return (leak);
 }
 
-static char		*ft_find_line(char *tmp)
+static char			*ft_find_line(char *tmp)
 {
 	int				len_n;
 	char			*line;
@@ -33,22 +32,21 @@ static char		*ft_find_line(char *tmp)
 	if (lf_ov)
 		tmp = ft_static(tmp, lf_ov);
 	if (!(*tmp))
+	{
+		if (tmp)
+			free(tmp);
 		return (NULL);
+	}
 	len_n = ft_strcspn(tmp, "\n");
 	line = ft_strnew(len_n);
 	line = ft_strncpy(line, tmp, len_n);
 	if (len_n < (int)ft_strlen(tmp) && tmp != NULL)
-	{
-		free(lf_ov);
 		lf_ov = ft_strsub(tmp, len_n + 1, ft_strlen(ft_strchr(tmp, '\n')));
-	}
-	else
-		ft_strdel(&lf_ov);
 	ft_strdel(&tmp);
 	return (line);
 }
 
-static int		ft_return(char *line, int ret)
+static int			ft_return(char *line, int ret)
 {
 	if (ret == -1)
 	{
@@ -58,7 +56,7 @@ static int		ft_return(char *line, int ret)
 	return (0);
 }
 
-int				get_next_line(const int fd, char **line)
+int					get_next_line(const int fd, char **line)
 {
 	int				ret;
 	char			*leak;

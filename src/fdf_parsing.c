@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 12:46:33 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/18 08:22:57 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/25 05:32:49 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,16 +44,16 @@ t_map			*enlarge(t_env *v, int size, int inc)
 		return (t_map*)(NULL);
 	while (++i <= inc)
 	{
-		maptmp[i].x = v->tab[i].x;
-		maptmp[i].y = v->tab[i].y;
-		maptmp[i].z = v->tab[i].z;
-		maptmp[i].color = v->tab[i].color;
+		maptmp[i].x = v->prev[i].x;
+		maptmp[i].y = v->prev[i].y;
+		maptmp[i].z = v->prev[i].z;
+		maptmp[i].color = v->prev[i].color;
 	}
-	free(v->tab);
+	free(v->prev);
 	return (maptmp);
 }
 
-void			do_parsing(t_env *v, char *line, int inc)
+void			do_parsing(t_env *v, char *line, int *inc)
 {
 	char		**split;
 	char		*d;
@@ -64,10 +64,13 @@ void			do_parsing(t_env *v, char *line, int inc)
 	x = -1;
 	while (++x < v->col)
 	{
+		check_char(v, split, x);
 		d = ft_strchr(split[x], ',');
-		v->tab[++inc] = create_map(split, x, v->li, d);
+		v->prev[++(*inc)] = create_map(split, x, v->li, d);
 	}
 	free_tab(split, v->col);
+	v->li++;
+	*inc = v->col * v->li - 1;
 }
 
 void			fdf_parsing(t_env *v, int fd)
@@ -80,20 +83,16 @@ void			fdf_parsing(t_env *v, int fd)
 	v->col = 0;
 	size = 1000;
 	inc = -1;
-	if (!(v->tab = (t_map *)ft_memalloc(sizeof(t_map) * size)))
+	if (!(v->prev = (t_map *)ft_memalloc(sizeof(t_map) * size)))
 		return ;
 	while (get_next_line(fd, &line) == 1)
 	{
 		check_map(line, v);
 		if (inc >= size)
 		{
-			v->tab = enlarge(v, size, inc);
+			v->prev = enlarge(v, size, inc);
 			size = size + 1000;
 		}
-		do_parsing(v, line, inc);
-		v->li++;
-		inc = v->col * v->li - 1;
+		do_parsing(v, line, &inc);
 	}
-	v->max = v->col * v->li;
-	iso_view(v);
 }

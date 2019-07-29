@@ -6,7 +6,7 @@
 #    By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/04 11:42:11 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/07/12 03:17:29 by nrivoire    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/07/23 03:59:05 by nrivoire    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -37,7 +37,7 @@ SRC = ft_putchar.c ft_putchar_fd.c\
 	  ft_strnew.c ft_strdel.c ft_strclr.c ft_strrev.c\
 	  ft_striter.c ft_striteri.c\
 	  ft_strmap.c ft_strmapi.c\
-	  ft_strtrim.c ft_strjoin.c ft_strcjoin.c ft_strsub.c ft_strsplit.c\
+	  ft_strtrim.c ft_strjoin.c ft_strjoinfree.c ft_strcjoin.c ft_strsub.c ft_strsplit.c\
 	  ft_lstnew.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c ft_lstmap.c ft_print_lst.c\
 	  ft_print_bits.c\
 	  ft_strspn.c ft_strcspn.c\

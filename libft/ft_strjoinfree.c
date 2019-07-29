@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   get_next_line.h                                  .::    .:/ .      .::   */
+/*   ft_strjoinfree.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/08 15:00:34 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/25 02:57:32 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/07/23 03:57:33 by nrivoire     #+#   ##    ##    #+#       */
+/*   Updated: 2019/07/25 01:42:26 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 40
+char		*ft_strjoinfree(char *dest, char *src)
+{
+	char	*res;
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include <fcntl.h>
-
-int				get_next_line(const int fd, char **line);
-
-#endif
+	res = ft_strjoin(dest, src);
+	ft_strdel(&dest);
+	ft_strdel(&src);
+	return (res);
+}

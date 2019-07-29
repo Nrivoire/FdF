@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/18 07:58:08 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/29 02:47:24 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,19 +25,8 @@
 # include <stdlib.h>
 
 /*
-**------------------------------------------------------------------------------
-*/
-#include <stdio.h>
-/*
-**------------------------------------------------------------------------------
-*/
-
-
-
-/*
 **---------------------------------MATRICE 2D-----------------------------------
 */
-
 typedef struct		s_mlx_img
 {
 	void			*ptr;
@@ -69,7 +58,7 @@ typedef struct		s_point
 {
 	int				mx;
 	int				my;
-	int				mz;
+	float			mz;
 	int				view;
 	t_rgb			color;
 }					t_point;
@@ -77,7 +66,7 @@ typedef struct		s_point
 typedef struct		s_bressen
 {
 	t_point			tmp;
-	int 			dx;
+	int				dx;
 	int				dy;
 	int				sx;
 	int				sy;
@@ -104,9 +93,8 @@ typedef struct		s_env
 	int				col;
 	int				li;
 	int				max;
-	float			radian;
-	float			zoom;
-	t_map			*tab;
+	float			scale;
+	t_map			*prev;
 	t_point			*current;
 	t_mlx			*mlx;
 	t_mlx_img		*img;
@@ -125,8 +113,12 @@ void				put_segment(t_point m1, t_point m2, t_env *v);
 void				display_map(t_env *v);
 
 void				check_map(char *line, t_env *v);
+void				check_char(t_env *v, char **split, int x);
 void				fdf_parsing(t_env *v, int fd);
 void				iso_view(t_env *v);
 void				parallel_view(t_env *v);
+int					key_press(int key, t_env *v);
+void				free_env(t_env *v);
+void				free_tab(char **tab, int n);
 
 #endif
