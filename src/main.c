@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/25 05:32:58 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/07 03:17:43 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,6 +42,13 @@ void		free_env(t_env *v)
 	}
 }
 
+int			key_release(int keycode, t_env *v)
+{
+	if (keycode)
+		v->key[keycode] = 0;
+	return (0);
+}
+
 int			red_cross(t_env *v)
 {
 	free_env(v);
@@ -66,7 +73,8 @@ int			main(int av, char **ac)
 	fdf_parsing(v, fd);
 	v->max = v->col * v->li;
 	iso_view(v);
-	mlx_key_hook(v->mlx->win_ptr, key_press, v);
+	mlx_hook(v->mlx->win_ptr, 2, 0, key_press, v);
+	mlx_key_hook(v->mlx->win_ptr, key_release, v);
 	mlx_hook(v->mlx->win_ptr, 17, (1L << 17), &red_cross, v);
 	mlx_loop(v->mlx->mlx_ptr);
 	free_env(v);

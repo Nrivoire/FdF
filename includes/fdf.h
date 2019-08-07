@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/29 02:47:24 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/07 03:17:39 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,6 +98,7 @@ typedef struct		s_env
 	t_point			*current;
 	t_mlx			*mlx;
 	t_mlx_img		*img;
+	int				key[269];
 }					t_env;
 
 /*

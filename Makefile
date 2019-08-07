@@ -6,7 +6,7 @@
 #    By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/06/14 18:19:22 by nrivoire     #+#   ##    ##    #+#        #
-#    Updated: 2019/07/21 23:36:20 by nrivoire    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/07/29 04:54:55 by nrivoire    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -42,13 +42,13 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 #	Includes
 INC_PATH = includes
 CPPFLAGS = -I $(INC_PATH)
-LDFLAGS = -L libft -g3 #-fsanitize=address
+LDFLAGS = -L libft #-g3 -fsanitize=address
 LDLIBS = -lft
 MINILIBX = -L minilibx_macos -lmlx -framework OpenGL -framework AppKit
 
 #	Compiler
 CC = clang
-CFLAGS = -Wall -Wextra -I. -g3 #-fsanitize=address
+CFLAGS = -Wall -Wextra -I. #-g3 -fsanitize=address
 
 ################
 ##   COLORS   ##

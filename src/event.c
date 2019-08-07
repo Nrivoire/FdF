@@ -6,20 +6,20 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/19 04:39:53 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/25 05:32:49 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/07 03:23:22 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			change_y(t_env *v, int key)
+int			change_y(t_env *v, int keycode)
 {
 	int		inc;
 	int		y;
 
 	inc = -1;
-	if (key == DOWN)
+	if (keycode == DOWN)
 		y = 10;
 	else
 		y = -10;
@@ -30,13 +30,13 @@ int			change_y(t_env *v, int key)
 	return (0);
 }
 
-int			change_x(t_env *v, int key)
+int			change_x(t_env *v, int keycode)
 {
 	int		inc;
 	int		x;
 
 	inc = -1;
-	if (key == RIGHT)
+	if (keycode == RIGHT)
 		x = 10;
 	else
 		x = -10;
@@ -47,13 +47,13 @@ int			change_x(t_env *v, int key)
 	return (0);
 }
 
-int			change_z(t_env *v, int key)
+int			change_z(t_env *v, int keycode)
 {
 	int		i;
 	double	z;
 
 	i = -1;
-	if (key == MORE)
+	if (keycode == MORE)
 		z = 0.5;
 	else
 		z = -0.5;
@@ -67,37 +67,30 @@ int			change_z(t_env *v, int key)
 	return (0);
 }
 
-int			refresh(t_env *v)
+int			key_press(int keycode, t_env *v)
 {
-	mlx_clear_window(v->mlx->mlx_ptr, v->mlx->win_ptr);
-	mlx_put_image_to_window(v->mlx, v->mlx->win_ptr, v->mlx->img.ptr, 0, 0);
-	return (0);
-}
-
-int			key_press(int key, t_env *v)
-{
-	if (key == RIGHT || key == LEFT)
-		change_x(v, key);
-	if (key == UP || key == DOWN)
-		change_y(v, key);
-	if (key == ESC)
+	if (keycode == ESC)
 	{
 		free_env(v);
 		exit(0);
 	}
-	if (key == P)
+	if (keycode)
+		v->key[keycode] = 1;
+	if (keycode == RIGHT || keycode == LEFT)
+		change_x(v, keycode);
+	if (keycode == UP || keycode == DOWN)
+		change_y(v, keycode);
+	if (keycode == P)
 	{
 		free(v->current);
 		parallel_view(v);
 	}
-	if (key == I)
+	if (keycode == I)
 	{
 		free(v->current);
 		iso_view(v);
 	}
-	if (key == MORE || key == LESS)
-		change_z(v, key);
-	if (key == R)
-		refresh(v);
+	if (keycode == MORE || keycode == LESS)
+		change_z(v, keycode);
 	return (0);
 }
