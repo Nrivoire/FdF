@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/10 01:13:29 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/10 06:05:48 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,16 +56,22 @@ typedef struct		s_rgb
 
 typedef struct		s_point
 {
-	int				mx;
-	int				my;
-	float			mz;
-	int				view;
+	double			mx;
+	double			my;
+	double			mz;
 	t_rgb			color;
 }					t_point;
 
+typedef struct		s_real
+{
+	int				x;
+	int				y;
+	int				z;
+	t_rgb			color;
+}					t_real;
+
 typedef struct		s_bressen
 {
-	t_point			tmp;
 	int				dx;
 	int				dy;
 	int				sx;
@@ -110,8 +116,8 @@ void				ft_error(char *str);
 int					ft_absolu(int nb);
 void				ft_pixel_put(t_mlx_img img, int x, int y, t_rgb color);
 t_rgb				hex_rgb(char *hex);
-void				put_segment(t_point m1, t_point m2, t_env *v);
 void				display_map(t_env *v);
+void				put_segment(t_real m1, t_real m2, t_env *v);
 
 void				check_map(char *line, t_env *v);
 void				check_char(t_env *v, char **split, int x);
@@ -122,5 +128,6 @@ int					key_press(int key, t_env *v);
 void				free_env(t_env *v);
 void				free_tab(char **tab, int n);
 void				menu(t_env *v);
+t_real				make_real(t_env *v, int inc);
 
 #endif

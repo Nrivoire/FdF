@@ -6,7 +6,7 @@
 #    By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/06/14 18:19:22 by nrivoire     #+#   ##    ##    #+#        #
-#    Updated: 2019/08/10 03:18:52 by nrivoire    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/08/10 06:06:37 by nrivoire    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -25,6 +25,7 @@ SRC_PATH = src
 SRC_NAME = main.c\
 		   get_next_line.c fdf_parsing.c check_map.c\
 		   iso_view.c parallel_view.c event.c\
+		   matrice2D_segment/make_real.c\
 		   matrice2D_segment/ft_absolu.c\
 		   matrice2D_segment/ft_create_img.c\
 		   matrice2D_segment/ft_error.c\

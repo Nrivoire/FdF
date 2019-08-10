@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/19 04:39:53 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/10 02:06:40 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/10 08:09:41 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,24 +64,34 @@ int			change_z(t_env *v, int keycode)
 	return (0);
 }
 
-int			rotation_matrix(t_env *v, int keycode)
+int			rotation_x(t_env *v, int keycode)
 {
 	int		i;
 	double	r;
+	int		center;
 	double	tmp_x;
 	double	tmp_y;
+	double	tmp_z;
+	double	ty;
+	double	tx;
 
 	i = -1;
+	center = v->max / 2;
 	if (keycode == O)
-		r = 1 * M_PI/90;
+		r = 0.1;
 	else
-		r = -1 * M_PI/90;
+		r = -0.1;
 	while (++i < v->max)
 	{
-		tmp_x = v->current[i].mx * cos(r) + v->current[i].my * (-sin(r));
-		tmp_y = v->current[i].mx * sin(r) + v->current[i].my * cos(r);
+		// tmp_x = v->current[i].mx * cos(r) + v->current[i].my * sin(r);
+		// tmp_y = v->current[i].my * (-sin(r)) + v->current[i].mz * cos(r);
+		// tmp_z = v->current[i].mz;
+		tmp_x = v->current[i].mx;
+		tmp_y = v->current[i].my * cos(r) + v->current[i].mz * sin(r);
+		tmp_z = v->current[i].my * (-sin(r)) + v->current[i].mz * cos(r);
 		v->current[i].mx = tmp_x;
 		v->current[i].my = tmp_y;
+		v->current[i].mz = tmp_z;
 	}
 	display_map(v);
 	return (0);
@@ -97,7 +107,7 @@ int			key_press(int keycode, t_env *v)
 	if (keycode)
 		v->key[keycode] = 1;
 	if (keycode == O || keycode == L)
-		rotation_matrix(v, keycode);
+		rotation_x(v, keycode);
 	if (keycode == RIGHT || keycode == LEFT)
 		change_x(v, keycode);
 	if (keycode == UP || keycode == DOWN)

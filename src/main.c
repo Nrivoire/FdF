@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/10 03:23:05 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/10 05:30:10 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -82,6 +82,7 @@ int			main(int av, char **ac)
 		ft_error("struct t_mlx ft_memalloc error");
 	v->mlx->mlx_ptr = mlx_init();
 	v->mlx->win_ptr = mlx_new_window(v->mlx->mlx_ptr, WIDTH, HEIGHT, "fdf");
+	ft_create_img(v->mlx->mlx_ptr, &v->mlx->img, WIDTH, HEIGHT);
 	fdf_parsing(v, fd);
 	v->max = v->col * v->li;
 	iso_view(v);

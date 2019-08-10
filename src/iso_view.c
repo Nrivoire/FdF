@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/13 03:52:35 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/10 01:10:25 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/10 06:03:33 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ int				iso_view_x(t_env *v, int inc, double start)
 {
 	int			x;
 
-	x = (int)(v->prev[inc].x + WIDTH * start) + \
+	x = (v->prev[inc].x + WIDTH * start) + \
 			(v->prev[inc].x - v->prev[inc].y) * v->scale * 2;
 	return (x);
 }
@@ -26,7 +26,7 @@ int				iso_view_y(t_env *v, int inc)
 {
 	int			y;
 
-	y = (int)(v->prev[inc].x + HEIGHT * 0.2) + \
+	y = (v->prev[inc].x + HEIGHT * 0.2) + \
 			(v->prev[inc].x + v->prev[inc].y) * v->scale;
 	return (y);
 }
