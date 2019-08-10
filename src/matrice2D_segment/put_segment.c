@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/28 19:13:41 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/25 05:32:49 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/10 01:11:49 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,6 +27,7 @@ void			display_map(t_env *v)
 			put_segment(v->current[inc - v->col], v->current[inc], v);
 	}
 	mlx_put_image_to_window(v->mlx, v->mlx->win_ptr, v->mlx->img.ptr, 0, 0);
+	menu(v);
 }
 
 double			percent(int start, int end, int current)

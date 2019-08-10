@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/19 04:39:53 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/07 03:23:22 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/10 02:06:40 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,6 @@ int			change_y(t_env *v, int keycode)
 		y = -10;
 	while (++inc < v->max)
 		v->current[inc].my += y;
-	mlx_clear_window(v->mlx->mlx_ptr, v->mlx->win_ptr);
 	display_map(v);
 	return (0);
 }
@@ -42,7 +41,6 @@ int			change_x(t_env *v, int keycode)
 		x = -10;
 	while (++inc < v->max)
 		v->current[inc].mx += x;
-	mlx_clear_window(v->mlx->mlx_ptr, v->mlx->win_ptr);
 	display_map(v);
 	return (0);
 }
@@ -62,7 +60,29 @@ int			change_z(t_env *v, int keycode)
 		if (v->prev[i].z > 0 || v->prev[i].z < 0)
 			v->current[i].mz = v->prev[i].z * z + v->current[i].mz;
 	}
-	mlx_clear_window(v->mlx->mlx_ptr, v->mlx->win_ptr);
+	display_map(v);
+	return (0);
+}
+
+int			rotation_matrix(t_env *v, int keycode)
+{
+	int		i;
+	double	r;
+	double	tmp_x;
+	double	tmp_y;
+
+	i = -1;
+	if (keycode == O)
+		r = 1 * M_PI/90;
+	else
+		r = -1 * M_PI/90;
+	while (++i < v->max)
+	{
+		tmp_x = v->current[i].mx * cos(r) + v->current[i].my * (-sin(r));
+		tmp_y = v->current[i].mx * sin(r) + v->current[i].my * cos(r);
+		v->current[i].mx = tmp_x;
+		v->current[i].my = tmp_y;
+	}
 	display_map(v);
 	return (0);
 }
@@ -76,6 +96,8 @@ int			key_press(int keycode, t_env *v)
 	}
 	if (keycode)
 		v->key[keycode] = 1;
+	if (keycode == O || keycode == L)
+		rotation_matrix(v, keycode);
 	if (keycode == RIGHT || keycode == LEFT)
 		change_x(v, keycode);
 	if (keycode == UP || keycode == DOWN)

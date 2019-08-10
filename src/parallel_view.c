@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/16 06:58:20 by loatilem     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/29 04:04:30 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/09 23:44:31 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,6 +74,5 @@ void			parallel_view(t_env *v)
 		return ;
 	while (--inc >= 0)
 		v->current[inc] = make_parallel_view(v, inc, limit_x);
-	mlx_clear_window(v->mlx->mlx_ptr, v->mlx->win_ptr);
 	display_map(v);
 }

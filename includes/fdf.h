@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/07 03:17:39 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/10 01:13:29 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -121,5 +121,6 @@ void				parallel_view(t_env *v);
 int					key_press(int key, t_env *v);
 void				free_env(t_env *v);
 void				free_tab(char **tab, int n);
+void				menu(t_env *v);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/27 13:27:22 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/25 03:52:23 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/10 03:22:25 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,7 +18,8 @@ static char			*ft_static(char *tmp, char *lf_ov)
 	char			*leak;
 
 	leak = ft_strjoin(lf_ov, tmp);
-	free(tmp);
+	if (tmp)
+		free(tmp);
 	ft_strdel(&lf_ov);
 	return (leak);
 }
@@ -29,19 +30,21 @@ static char			*ft_find_line(char *tmp)
 	char			*line;
 	static char		*lf_ov;
 
-	if (lf_ov)
-		tmp = ft_static(tmp, lf_ov);
 	if (!(*tmp))
 	{
 		if (tmp)
 			free(tmp);
 		return (NULL);
 	}
+	if (lf_ov)
+		tmp = ft_static(tmp, lf_ov);
 	len_n = ft_strcspn(tmp, "\n");
 	line = ft_strnew(len_n);
 	line = ft_strncpy(line, tmp, len_n);
 	if (len_n < (int)ft_strlen(tmp) && tmp != NULL)
 		lf_ov = ft_strsub(tmp, len_n + 1, ft_strlen(ft_strchr(tmp, '\n')));
+	else
+		ft_strdel(&lf_ov);
 	ft_strdel(&tmp);
 	return (line);
 }
@@ -63,7 +66,10 @@ int					get_next_line(const int fd, char **line)
 	char			buff[BUFF_SIZE + 1];
 
 	if (fd < 0 || line == NULL || BUFF_SIZE < 1 || read(fd, buff, 0) == -1)
+	{
+		ft_error("usage : ./fdf map_sample.fdf");
 		return (-1);
+	}
 	*line = ft_strnew(BUFF_SIZE);
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{

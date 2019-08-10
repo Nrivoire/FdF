@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/13 03:52:35 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/29 02:46:54 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/10 01:10:25 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -73,6 +73,5 @@ void			iso_view(t_env *v)
 		return ;
 	while (--inc > -1)
 		v->current[inc] = make_iso_view(v, inc, start_x);
-	mlx_clear_window(v->mlx->mlx_ptr, v->mlx->win_ptr);
 	display_map(v);
 }

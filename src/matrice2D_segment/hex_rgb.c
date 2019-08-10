@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 17:51:01 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/19 05:02:00 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/09 23:27:19 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -58,9 +58,9 @@ t_rgb		hex_rgb(char *hex)
 	t_rgb		color;
 
 	hex = make_hex(hex);
-	color.r = ctohex(hex[2]) + ctohex(hex[3]) * 16;
-	color.g = ctohex(hex[4]) + ctohex(hex[5]) * 16;
-	color.b = ctohex(hex[6]) + ctohex(hex[7]) * 16;
+	color.r = ctohex(hex[3]) + ctohex(hex[2]) * 16;
+	color.g = ctohex(hex[5]) + ctohex(hex[4]) * 16;
+	color.b = ctohex(hex[7]) + ctohex(hex[6]) * 16;
 	free(hex);
 	return (color);
 }
