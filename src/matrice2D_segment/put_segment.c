@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/28 19:13:41 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/10 06:04:45 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/13 14:39:22 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,13 +23,13 @@ void			display_map(t_env *v)
 	ft_create_img(v->mlx->mlx_ptr, &v->mlx->img, WIDTH, HEIGHT);
 	while (++inc < v->max)
 	{
-		if (v->prev[inc].x % v->col != 0 && v->prev[inc].x > 0)
+		if (v->map[inc].x % v->col != 0 && v->map[inc].x > 0)
 		{
 			r1 = make_real(v, inc - 1);
 			r2 = make_real(v, inc);
 			put_segment(r1, r2, v);
 		}
-		if (v->prev[inc].y % v->li != 0 && v->prev[inc].y > 0)
+		if (v->map[inc].y % v->li != 0 && v->map[inc].y > 0)
 		{
 			r1 = make_real(v, inc - v->col);
 			r2 = make_real(v, inc);
@@ -40,12 +40,12 @@ void			display_map(t_env *v)
 	menu(v);
 }
 
-double			percent(int start, int end, int current)
+double			percent(int start, int end, int cur)
 {
 	double		placement;
 	double		distance;
 
-	placement = current - start;
+	placement = cur - start;
 	distance = end - start;
 	return ((distance == 0) ? 1.0 : (placement / distance));
 }

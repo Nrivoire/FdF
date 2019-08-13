@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/10 06:05:48 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/13 14:39:22 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,6 +24,8 @@
 # include <math.h>
 # include <stdlib.h>
 
+
+# include <stdio.h>
 /*
 **---------------------------------MATRICE 2D-----------------------------------
 */
@@ -54,14 +56,6 @@ typedef struct		s_rgb
 	int				a;
 }					t_rgb;
 
-typedef struct		s_point
-{
-	double			mx;
-	double			my;
-	double			mz;
-	t_rgb			color;
-}					t_point;
-
 typedef struct		s_real
 {
 	int				x;
@@ -84,24 +78,38 @@ typedef struct		s_bressen
 **-----------------------------ENVIRONNEMENT------------------------------------
 */
 
+typedef struct		s_point
+{
+	double			x;
+	double			y;
+	double			z;
+}					t_point;
+
+
 typedef struct		s_map
 {
 	int				x;
 	int				y;
-	int				z;
+	double			z;
 	t_rgb			color;
 }					t_map;
 
+typedef struct 		s_lst
+{
+	char			*line;
+	struct s_lst	*next;
+}					t_lst;
+
+
 typedef struct		s_env
 {
-	float			dx;
-	float			dy;
 	int				col;
 	int				li;
 	int				max;
-	float			scale;
-	t_map			*prev;
-	t_point			*current;
+	double			scale;
+	int				view;
+	t_map			*map;
+	t_point			*cur;
 	t_mlx			*mlx;
 	t_mlx_img		*img;
 	int				key[269];
@@ -121,13 +129,14 @@ void				put_segment(t_real m1, t_real m2, t_env *v);
 
 void				check_map(char *line, t_env *v);
 void				check_char(t_env *v, char **split, int x);
-void				fdf_parsing(t_env *v, int fd);
+t_lst				*fdf_parsing(t_env *v, int fd);
 void				iso_view(t_env *v);
 void				parallel_view(t_env *v);
 int					key_press(int key, t_env *v);
 void				free_env(t_env *v);
 void				free_tab(char **tab, int n);
 void				menu(t_env *v);
+void				map(t_lst *elem, t_env *v);
 t_real				make_real(t_env *v, int inc);
 
 #endif

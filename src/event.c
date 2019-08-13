@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/19 04:39:53 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/10 08:09:41 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/13 15:23:42 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,11 +20,11 @@ int			change_y(t_env *v, int keycode)
 
 	inc = -1;
 	if (keycode == DOWN)
-		y = 10;
+		y = 2;
 	else
-		y = -10;
+		y = -2;
 	while (++inc < v->max)
-		v->current[inc].my += y;
+		v->cur[inc].y += y;
 	display_map(v);
 	return (0);
 }
@@ -36,11 +36,11 @@ int			change_x(t_env *v, int keycode)
 
 	inc = -1;
 	if (keycode == RIGHT)
-		x = 10;
+		x = 2;
 	else
-		x = -10;
+		x = -2;
 	while (++inc < v->max)
-		v->current[inc].mx += x;
+		v->cur[inc].x += x;
 	display_map(v);
 	return (0);
 }
@@ -52,13 +52,13 @@ int			change_z(t_env *v, int keycode)
 
 	i = -1;
 	if (keycode == MORE)
-		z = 0.5;
+		z = 0.6;
 	else
-		z = -0.5;
+		z = -0.6;
 	while (++i < v->max)
 	{
-		if (v->prev[i].z > 0 || v->prev[i].z < 0)
-			v->current[i].mz = v->prev[i].z * z + v->current[i].mz;
+		if (v->cur[i].z > 0 || v->cur[i].z < 0)
+			v->map[i].z = v->cur[i].z * z + v->map[i].z;
 	}
 	display_map(v);
 	return (0);
@@ -68,31 +68,36 @@ int			rotation_x(t_env *v, int keycode)
 {
 	int		i;
 	double	r;
-	int		center;
 	double	tmp_x;
 	double	tmp_y;
-	double	tmp_z;
-	double	ty;
-	double	tx;
 
 	i = -1;
-	center = v->max / 2;
-	if (keycode == O)
+	if (keycode == L)
 		r = 0.1;
 	else
 		r = -0.1;
 	while (++i < v->max)
 	{
-		// tmp_x = v->current[i].mx * cos(r) + v->current[i].my * sin(r);
-		// tmp_y = v->current[i].my * (-sin(r)) + v->current[i].mz * cos(r);
-		// tmp_z = v->current[i].mz;
-		tmp_x = v->current[i].mx;
-		tmp_y = v->current[i].my * cos(r) + v->current[i].mz * sin(r);
-		tmp_z = v->current[i].my * (-sin(r)) + v->current[i].mz * cos(r);
-		v->current[i].mx = tmp_x;
-		v->current[i].my = tmp_y;
-		v->current[i].mz = tmp_z;
+		tmp_x = v->cur[i].x * cos(r) + v->cur[i].y * -sin(r);
+		tmp_y = v->cur[i].x * sin(r) + v->cur[i].y * cos(r);
+		v->cur[i].x = tmp_x;
+		v->cur[i].y = tmp_y;
 	}
+	display_map(v);
+	return (0);
+}
+
+int			zoom(t_env *v, int keycode)
+{
+	double	s;
+	int		i;
+
+	i = -1;
+	if (keycode == Q)
+		s = 1;
+	else
+		s = -1;
+	v->scale += s;
 	display_map(v);
 	return (0);
 }
@@ -112,17 +117,19 @@ int			key_press(int keycode, t_env *v)
 		change_x(v, keycode);
 	if (keycode == UP || keycode == DOWN)
 		change_y(v, keycode);
+	if (keycode == MORE || keycode == LESS)
+		change_z(v, keycode);
+	if (keycode == Q || keycode == W)
+		zoom(v, keycode);
 	if (keycode == P)
 	{
-		free(v->current);
+		free(v->cur);
 		parallel_view(v);
 	}
 	if (keycode == I)
 	{
-		free(v->current);
+		free(v->cur);
 		iso_view(v);
 	}
-	if (keycode == MORE || keycode == LESS)
-		change_z(v, keycode);
 	return (0);
 }

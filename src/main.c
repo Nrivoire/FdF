@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/10 05:30:10 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/13 14:57:31 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,10 +17,8 @@ void		free_env(t_env *v)
 {
 	if (v)
 	{
-		if (v->prev)
-			free(v->prev);
-		if (v->current)
-			free(v->current);
+		if (v->map)
+			free(v->map);
 		if (v->mlx)
 		{
 			if (v->mlx->mlx_ptr)
@@ -58,13 +56,13 @@ int			red_cross(t_env *v)
 
 void		menu(t_env *v)
 {
-	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr, \
+	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
 			10, 10, 0xFFFFFF, "Parallel view : P");
-	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr, \
+	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
 			10, 30, 0xFFFFFF, "Isometric view : I");
-	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr, \
+	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
 			10, 60, 0xFFFFFF, "try the directional keys");
-	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr, \
+	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
 			10, 90, 0xFFFFFF, "Change z : + or -");
 }
 
@@ -72,6 +70,7 @@ int			main(int av, char **ac)
 {
 	t_env	*v;
 	int		fd;
+	t_lst	*lst;
 
 	fd = open(ac[1], O_RDONLY);
 	if (av != 2 && fd < 0)
@@ -83,8 +82,8 @@ int			main(int av, char **ac)
 	v->mlx->mlx_ptr = mlx_init();
 	v->mlx->win_ptr = mlx_new_window(v->mlx->mlx_ptr, WIDTH, HEIGHT, "fdf");
 	ft_create_img(v->mlx->mlx_ptr, &v->mlx->img, WIDTH, HEIGHT);
-	fdf_parsing(v, fd);
-	v->max = v->col * v->li;
+	lst = fdf_parsing(v, fd);
+	map(lst, v);
 	iso_view(v);
 	menu(v);
 	mlx_hook(v->mlx->win_ptr, 2, 0, key_press, v);
