@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/14 15:41:08 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/14 16:25:56 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,8 +24,6 @@
 # include <math.h>
 # include <stdlib.h>
 
-
-# include <stdio.h>
 /*
 **---------------------------------MATRICE 2D-----------------------------------
 */
@@ -73,18 +71,15 @@ typedef struct		s_bressen
 	int				err;
 	int				e2;
 }					t_bressen;
-
 /*
 **-----------------------------ENVIRONNEMENT------------------------------------
 */
-
 typedef struct		s_point
 {
 	double			x;
 	double			y;
 	double			z;
 }					t_point;
-
 
 typedef struct		s_map
 {
@@ -94,12 +89,11 @@ typedef struct		s_map
 	t_rgb			color;
 }					t_map;
 
-typedef struct 		s_lst
+typedef struct		s_lst
 {
 	char			*line;
 	struct s_lst	*next;
 }					t_lst;
-
 
 typedef struct		s_env
 {
@@ -114,11 +108,9 @@ typedef struct		s_env
 	t_mlx_img		*img;
 	int				key[269];
 }					t_env;
-
 /*
 **----------------------------------MAKE MAP------------------------------------
 */
-
 void				ft_create_img(void *ptr, t_mlx_img *img, int w, int h);
 void				ft_error(char *str);
 int					ft_absolu(int nb);
@@ -150,6 +142,5 @@ void				free_env(t_env *v);
 void				free_tab(char **tab, int n);
 void				menu(t_env *v);
 void				map(t_lst *elem, t_env *v);
-
 
 #endif
