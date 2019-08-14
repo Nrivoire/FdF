@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/16 06:58:20 by loatilem     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/13 15:11:27 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/14 15:13:22 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ t_point			make_para_view(t_env *v, int inc)
 void			parallel_view(t_env *v)
 {
 	int			inc;
-	
+
 	inc = -1;
 	v->view = 0;
 	if (v->max > 1000)

@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/13 03:52:35 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/13 15:10:52 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/14 15:10:51 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ t_point			make_iso_view(t_env *v, int inc)
 void			iso_view(t_env *v)
 {
 	int			inc;
-	
+
 	inc = -1;
 	v->view = 1;
 	if (v->max > 1000)

@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/13 14:57:31 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/14 15:16:02 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,6 +64,10 @@ void		menu(t_env *v)
 			10, 60, 0xFFFFFF, "try the directional keys");
 	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
 			10, 90, 0xFFFFFF, "Change z : + or -");
+	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
+			10, 120, 0xFFFFFF, "Zoom : more O less L");
+	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
+			10, 150, 0xFFFFFF, "Rotate Camera : Q or W");
 }
 
 int			main(int av, char **ac)
