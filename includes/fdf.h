@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/14 16:25:56 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/16 16:40:04 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -97,9 +97,14 @@ typedef struct		s_lst
 
 typedef struct		s_env
 {
+	double			rx;
+	double			ry;
+	double			rz;
 	int				col;
 	int				li;
 	int				max;
+	int				h;
+	int				w;
 	double			scale;
 	int				view;
 	t_map			*map;
@@ -125,17 +130,15 @@ void				check_char(t_env *v, char **split, int x);
 t_lst				*fdf_parsing(t_env *v, int fd);
 void				map(t_lst *elem, t_env *v);
 
-void				rotation_x(t_env *v, double degree);
-void				rotation_y(t_env *v, double degree);
-void				rotation_z(t_env *v, double degree);
 void				iso_view(t_env *v);
 void				parallel_view(t_env *v);
 
 int					zoom(t_env *v, int keycode);
 int					change_y(t_env *v, int keycode);
 int					change_x(t_env *v, int keycode);
-int					change_z(t_env *v, int keycode);
+int					change_z_iso(t_env *v, int keycode);
 int					rotation_camera(t_env *v, int keycode);
+int					rotations(t_env *v, int keycode);
 int					key_press(int key, t_env *v);
 
 void				free_env(t_env *v);

@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/28 19:13:41 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/13 14:39:22 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/16 16:19:52 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,8 +84,6 @@ void			put_segment(t_real m1, t_real m2, t_env *v)
 	t_bressen	b;
 	t_real		tmp;
 
-	m2.y = m2.y - m2.z;
-	m1.y = m1.y - m1.z;
 	b = init_bresen(m1, m2);
 	tmp = m1;
 	while (1)

@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/14 15:16:02 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/16 15:49:13 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,6 +76,7 @@ int			main(int av, char **ac)
 	int		fd;
 	t_lst	*lst;
 
+	//sleep(5);
 	fd = open(ac[1], O_RDONLY);
 	if (av != 2 && fd < 0)
 		ft_error("usage : ./fdf map_sample.fdf");

@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/27 13:27:22 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/10 03:22:25 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/14 18:38:43 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,6 +54,7 @@ static int			ft_return(char *line, int ret)
 	if (ret == -1)
 	{
 		free(&line);
+		ft_error("usage : ./fdf map_sample.fdf");
 		return (-1);
 	}
 	return (0);

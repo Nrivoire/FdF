@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/19 04:39:53 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/14 15:43:54 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/16 16:41:22 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,14 +15,16 @@
 
 void		more_event(int keycode, t_env *v)
 {
-	if (keycode == Q || keycode == W)
+	if (keycode == Q || keycode == W || keycode == E || keycode == A || keycode == S || keycode == D)
+		rotations(v, keycode);
+	if (keycode == J || keycode == K)
 		rotation_camera(v, keycode);
 	if (keycode == RIGHT || keycode == LEFT)
 		change_x(v, keycode);
 	if (keycode == UP || keycode == DOWN)
 		change_y(v, keycode);
 	if (keycode == MORE || keycode == LESS)
-		change_z(v, keycode);
+		change_z_iso(v, keycode);
 	if (keycode == O || keycode == L)
 		zoom(v, keycode);
 }
