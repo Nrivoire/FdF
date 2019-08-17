@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 15:19:25 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/16 16:47:56 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/17 17:14:32 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ int			change_x(t_env *v, int keycode)
 	return (0);
 }
 
-int			change_z_iso(t_env *v, int keycode)
+int			change_z(t_env *v, int keycode)
 {
 	int		i;
 	double	z;
@@ -87,42 +87,16 @@ int			rotation_camera(t_env *v, int keycode)
 	return (0);
 }
 
-int			rotations(t_env *v, int keycode)
-{
-	int		i;
-
-	i = -1;
-	if (keycode == Q)
-		v->rz += 0.1;
-	if (keycode == E)
-		v->rx -= 0.1;
-	if (keycode == W)
-		v->ry += 0.1;
-	if (keycode == S)
-		v->ry -= 0.1;
-	if (keycode == A)
-		v->rx += 0.1;
-	if (keycode == D)
-		v->rx -= 0.1;
-	while (++i < v->max)
-	{
-		v->cur[i].z = (v->map[i].y - (v->li * .5)) * sin(v->rz) + v->map[i].z * cos(v->rz);
-		v->cur[i].x = (v->map[i].x - (v->col * .5)) * cos(v->rx) + v->map[i].z * sin(v->rx);
-		v->cur[i].y = (v->map[i].x - (v->col * .5)) * sin(v->ry) + (v->map[i].y - (v->li * .5)) * cos(v->ry);
-	}
-	display_map(v);
-	return (0);
-}
-
 int			zoom(t_env *v, int keycode)
 {
 	double	s;
 	int		i;
 
 	i = -1;
+	s = 0;
 	if (keycode == O)
 		s = 0.5;
-	else
+	else if (v->scale > 1)
 		s = -0.5;
 	v->scale += s;
 	display_map(v);

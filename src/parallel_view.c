@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/16 06:58:20 by loatilem     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/16 16:35:36 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/17 17:12:58 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,8 @@ void			parallel_view(t_env *v)
 		return ;
 	while (++inc < v->max)
 		v->cur[inc] = make_para_view(v, inc);
-	while ((v->cur[v->max - 1].x * v->scale + v->w) > WIDTH || (v->cur[v->max - 1].y * v->scale + v->h) > HEIGHT)
+	while ((v->cur[v->max - 1].x * v->scale + v->w) > WIDTH || \
+			(v->cur[v->max - 1].y * v->scale + v->h) > HEIGHT)
 		v->scale -= 0.5;
 	display_map(v);
 }

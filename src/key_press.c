@@ -6,16 +6,42 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/19 04:39:53 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/16 16:41:22 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/17 17:17:16 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+int			rotations(t_env *v, int keycode)
+{
+	int		i;
+
+	i = -1;
+	if (keycode == W)
+		v->ry += 0.1;
+	if (keycode == S)
+		v->ry -= 0.1;
+	if (keycode == A)
+		v->rx += 0.1;
+	if (keycode == D)
+		v->rx -= 0.1;
+	while (++i < v->max)
+	{
+		v->cur[i].z = (v->map[i].y - (v->li * .5)) * sin(v->ry) + \
+				v->map[i].z * cos(v->rz);
+		v->cur[i].x = (v->map[i].x - (v->col * .5)) * cos(v->rx) + \
+				v->map[i].z * sin(v->rz);
+		v->cur[i].y = (v->map[i].x - (v->col * .5)) * sin(v->rx) + \
+				(v->map[i].y - (v->li * .5)) * cos(v->ry);
+	}
+	display_map(v);
+	return (0);
+}
+
 void		more_event(int keycode, t_env *v)
 {
-	if (keycode == Q || keycode == W || keycode == E || keycode == A || keycode == S || keycode == D)
+	if (keycode == W || keycode == A || keycode == S || keycode == D)
 		rotations(v, keycode);
 	if (keycode == J || keycode == K)
 		rotation_camera(v, keycode);
@@ -24,7 +50,7 @@ void		more_event(int keycode, t_env *v)
 	if (keycode == UP || keycode == DOWN)
 		change_y(v, keycode);
 	if (keycode == MORE || keycode == LESS)
-		change_z_iso(v, keycode);
+		change_z(v, keycode);
 	if (keycode == O || keycode == L)
 		zoom(v, keycode);
 }
