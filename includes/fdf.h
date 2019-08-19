@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/17 17:15:35 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/19 08:56:41 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -134,9 +134,6 @@ void				iso_view(t_env *v);
 void				parallel_view(t_env *v);
 
 int					zoom(t_env *v, int keycode);
-int					change_y(t_env *v, int keycode);
-int					change_x(t_env *v, int keycode);
-int					change_z(t_env *v, int keycode);
 int					rotation_camera(t_env *v, int keycode);
 int					key_press(int key, t_env *v);
 

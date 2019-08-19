@@ -6,12 +6,29 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/19 04:39:53 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/17 17:51:34 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/17 18:16:20 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+// t_rgb		get_rainbow(t_env *v)
+// {
+// 	t_rgb	rainbow;
+// 	int		i;
+
+// 	i = -1;
+// 	while (++i < v->max)
+// 	{
+// 		if (v->map[i].color.r == 255 && v->map[i].color.g == 255 && v->map[i].color.b == 255)
+// 		{
+			
+// 		}
+// 	}
+// 	display_map(v);
+// 	return (rainbow);
+// }
 
 int			rotations(t_env *v, int keycode)
 {
