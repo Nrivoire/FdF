@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 15:00:34 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/25 02:57:32 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/20 17:13:47 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE 40
+# define BUFF_SIZE 128
 
 # include <unistd.h>
 # include <stdlib.h>

@@ -6,7 +6,7 @@
 #    By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/06/14 18:19:22 by nrivoire     #+#   ##    ##    #+#        #
-#    Updated: 2019/08/17 17:15:12 by nrivoire    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/08/21 13:35:52 by nrivoire    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,19 +20,18 @@ NAME = fdf
 
 #	Sources
 # SRC_SUP = {dossiers dans src qui seront separe par une virgule}
-SRC_SUP = matrice2D_segment
 SRC_PATH = src
 SRC_NAME = main.c\
 		   get_next_line.c fdf_parsing.c check_map.c\
-		   iso_view.c parallel_view.c event.c key_press.c\
-		   create_map.c\
-		   matrice2D_segment/make_real.c\
-		   matrice2D_segment/ft_absolu.c\
-		   matrice2D_segment/ft_create_img.c\
-		   matrice2D_segment/ft_error.c\
-		   matrice2D_segment/ft_pixel_put.c\
-		   matrice2D_segment/hex_rgb.c\
-		   matrice2D_segment/put_segment.c\
+		   event.c key_press.c make_rgb.c button.c\
+		   create_map.c conic.c\
+		   display_map.c\
+		   ft_absolu.c\
+		   ft_create_img.c\
+		   ft_error.c\
+		   ft_pixel_put.c\
+		   hex_rgb.c\
+		   put_segment.c\
 
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
@@ -43,6 +42,9 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
 #	Includes
 INC_PATH = includes
+INC_NAME = fdf.h keys.h
+INC = $(addprefix $(INC_PATH)/,$(INC_NAME))
+
 CPPFLAGS = -I $(INC_PATH)
 LDFLAGS = -L libft #-g3 -fsanitize=address
 LDLIBS = -lft
@@ -92,7 +94,7 @@ $(NAME): $(OBJ)
 libft.a:
 	@make -C ./libft/
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC)
 	@mkdir -p $(OBJ_PATH) $(OBJ_PATH)/$(SRC_SUP)
 	@$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ -c $<
 	@printf "\r$(YELLOW)$(BOLD)[COMPILE] $(END) $(<:.c=)..."

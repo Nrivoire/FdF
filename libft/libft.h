@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/13 16:51:20 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/07/24 22:42:01 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/19 20:50:27 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# define BUF_SIZE 1
+# define BUF_SIZE 2
 
 # include <unistd.h>
 # include <string.h>

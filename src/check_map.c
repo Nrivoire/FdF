@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/18 07:57:06 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/13 00:06:52 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/19 12:56:54 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,12 +20,7 @@ void			check_char(t_env *v, char **split, int x)
 	i = -1;
 	while (split[x][++i] != ',' && split[x][i] != '\0')
 	{
-		if ((split[x][i] < '0' && split[x][i] > '9'))
-		{
-			free_tab(split, v->col);
-			ft_error("Not a valid map.\n");
-		}
-		if (split[x][i] == '-' && (split[x][i] < '0' && split[x][i] > '9'))
+		if (ft_isalpha(split[x][i]) == 1)
 		{
 			free_tab(split, v->col);
 			ft_error("Not a valid map.\n");
@@ -55,14 +50,10 @@ void			check_map(char *line, t_env *v)
 {
 	if (v->col == 0)
 		v->col = ft_count_map(line, ' ');
-	if (ft_count_map(line, ' ') != (size_t)v->col)
+	if (ft_count_map(line, ' ') != (size_t)v->col || \
+			ft_count_map(line, ' ') == 0)
 	{
 		ft_strdel(&line);
 		ft_error("Not a valid map. The map must be a rectangle.");
-	}
-	if (line[0] == '\n')
-	{
-		ft_strdel(&line);
-		ft_error("Not a valid map.");
 	}
 }

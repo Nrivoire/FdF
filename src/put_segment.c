@@ -6,39 +6,12 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/28 19:13:41 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/17 16:39:32 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/19 22:05:47 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void			display_map(t_env *v)
-{
-	int			inc;
-	t_real		r1;
-	t_real		r2;
-
-	inc = -1;
-	ft_create_img(v->mlx->mlx_ptr, &v->mlx->img, WIDTH, HEIGHT);
-	while (++inc < v->max)
-	{
-		if (v->map[inc].x % v->col != 0 && v->map[inc].x > 0)
-		{
-			r1 = make_real(v, inc - 1);
-			r2 = make_real(v, inc);
-			put_segment(r1, r2, v);
-		}
-		if (v->map[inc].y % v->li != 0 && v->map[inc].y > 0)
-		{
-			r1 = make_real(v, inc - v->col);
-			r2 = make_real(v, inc);
-			put_segment(r1, r2, v);
-		}
-	}
-	mlx_put_image_to_window(v->mlx, v->mlx->win_ptr, v->mlx->img.ptr, 0, 0);
-	menu(v);
-}
 
 double			percent(int start, int end, int cur)
 {

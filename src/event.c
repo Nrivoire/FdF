@@ -6,99 +6,71 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 15:19:25 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/17 17:14:32 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/21 11:54:20 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			change_y(t_env *v, int keycode)
-{
-	int		inc;
-	int		y;
-
-	inc = -1;
-	if (keycode == DOWN)
-		y = 2;
-	else
-		y = -2;
-	while (++inc < v->max)
-		v->cur[inc].y += y;
-	display_map(v);
-	return (0);
-}
-
-int			change_x(t_env *v, int keycode)
-{
-	int		inc;
-	int		x;
-
-	inc = -1;
-	if (keycode == RIGHT)
-		x = 2;
-	else
-		x = -2;
-	while (++inc < v->max)
-		v->cur[inc].x += x;
-	display_map(v);
-	return (0);
-}
-
-int			change_z(t_env *v, int keycode)
+void		make_color_with_z(t_env *v)
 {
 	int		i;
-	double	z;
 
 	i = -1;
-	if (keycode == MORE)
-		z = 0.2;
-	else
-		z = -0.2;
 	while (++i < v->max)
 	{
-		if (v->map[i].z > 0 || v->map[i].z < 0)
-			v->cur[i].z = v->map[i].z * z + v->cur[i].z;
+		if (v->map[i].z <= 0)
+			v->cur[i].c = make_rgb(00, 32, 229, 1);
+		if (v->map[i].z > 0 && v->map[i].z < 30)
+			v->cur[i].c = make_rgb(46, 159, 30, 1);
+		if (v->map[i].z >= 30 && v->map[i].z < 60)
+			v->cur[i].c = make_rgb(56, 179, 40, 1);
+		if (v->map[i].z >= 60 && v->map[i].z < 80)
+			v->cur[i].c = make_rgb(253, 155, 52, 1);
+		if (v->map[i].z >= 80 && v->map[i].z < 300)
+			v->cur[i].c = make_rgb(105, 62, 6, 1);
+		if (v->map[i].z >= 300)
+			v->cur[i].c = make_rgb(255, 255, 255, 1);
 	}
 	display_map(v);
-	return (0);
 }
 
-int			rotation_camera(t_env *v, int keycode)
+void		change_y(t_env *v, int keycode)
+{
+	if (keycode == DOWN)
+		v->cam_y += 10;
+	else
+		v->cam_y -= 10;
+	display_map(v);
+}
+
+void		change_x(t_env *v, int keycode)
+{
+	if (keycode == RIGHT)
+		v->cam_x += 10;
+	else
+		v->cam_x -= 10;
+	display_map(v);
+}
+
+void		change_z(t_env *v, int keycode)
+{
+	if (keycode == MORE)
+		v->elev += 0.05;
+	else
+		v->elev -= 0.05;
+	display_map(v);
+}
+
+void		zoom(t_env *v, int keycode)
 {
 	int		i;
-	double	r;
-	double	tmp_x;
-	double	tmp_y;
 
 	i = -1;
 	if (keycode == K)
-		r = 0.1;
-	else
-		r = -0.1;
-	while (++i < v->max)
-	{
-		tmp_x = v->cur[i].x * cos(r) + v->cur[i].y * -sin(r);
-		tmp_y = v->cur[i].x * sin(r) + v->cur[i].y * cos(r);
-		v->cur[i].x = tmp_x;
-		v->cur[i].y = tmp_y;
-	}
-	display_map(v);
-	return (0);
-}
-
-int			zoom(t_env *v, int keycode)
-{
-	double	s;
-	int		i;
-
-	i = -1;
-	s = 0;
-	if (keycode == O)
-		s = 0.5;
+		v->scale += 0.5;
 	else if (v->scale > 1)
-		s = -0.5;
-	v->scale += s;
+		v->scale -= 0.5;
 	display_map(v);
-	return (0);
 }

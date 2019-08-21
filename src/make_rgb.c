@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   make_real.c                                      .::    .:/ .      .::   */
+/*   make_rgb.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/08/10 06:04:30 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/17 16:39:39 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/07/29 07:04:46 by nrivoire     #+#   ##    ##    #+#       */
+/*   Updated: 2019/08/20 19:00:10 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_real			make_real(t_env *v, int inc)
+t_rgb		make_rgb(int r, int g, int b, int a)
 {
-	t_real		r;
+	t_rgb	content;
 
-	r.z = v->cur[inc].z * (v->scale / 4);
-	r.x = (v->cur[inc].x * v->scale) + WIDTH * 0.5;
-	r.y = (v->cur[inc].y * v->scale) + HEIGHT * 0.5 - r.z;
-	r.color = v->map[inc].color;
-	return (r);
+	content.r = r;
+	content.g = g;
+	content.b = b;
+	content.a = a;
+	return (content);
 }

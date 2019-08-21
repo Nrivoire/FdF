@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/17 17:26:16 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/21 14:58:40 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,34 +40,51 @@ void		free_env(t_env *v)
 	}
 }
 
-int			key_release(int keycode, t_env *v)
-{
-	if (keycode)
-		v->key[keycode] = 0;
-	return (0);
-}
-
-int			red_cross(t_env *v)
-{
-	free_env(v);
-	exit(0);
-	return (0);
-}
-
 void		menu(t_env *v)
 {
+	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr, 19, 28,
+			0xFFFFFF, "Orthogonal view : O");
+	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr, 22, 88,
+			0xFFFFFF, "Isometric view : I");
+	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr, 39, 148,
+			0xFFFFFF, "Conic view : P");
 	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
-			10, 10, 0xFFFFFF, "Parallel view : P");
+			10, 950, 0xFFFFFF, "Try directional keys");
 	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
-			10, 30, 0xFFFFFF, "Isometric view : I");
+			10, 980, 0xFFFFFF, "Rotate Camera : W, A, S, D, Q, E");
 	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
-			10, 60, 0xFFFFFF, "try the directional keys");
+			99, 1010, 0xFFFFFF, "Zoom : more K less L");
 	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
-			10, 90, 0xFFFFFF, "Change z : + or -");
+			58, 1040, 0xFFFFFF, "Change z : + or -");
 	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
-			10, 120, 0xFFFFFF, "Zoom : more O less L");
-	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
-			10, 150, 0xFFFFFF, "Rotate Camera : Q or W");
+			76, 1070, 0xFFFFFF, "Colors : C or V");
+}
+
+void		initialization(t_env *v)
+{
+	if (!(v->cur = (t_point *)malloc(sizeof(t_point) * v->max)))
+		return ;
+	v->cam_x = 0;
+	v->cam_y = 0;
+	v->cur_color = 0;
+	v->elev = .2;
+	v->var = 1;
+}
+
+void		refresh_display(t_env *v)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < HEIGHT)
+	{
+		j = -1;
+		while (++j < WIDTH)
+			ft_pixel_put(v->mlx->img, j, i, make_rgb(0, 0, 0, 1));
+	}
+	if (v->view == 1 || v->view == 0)
+		projection(v);
 }
 
 int			main(int av, char **ac)
@@ -77,7 +94,8 @@ int			main(int av, char **ac)
 	t_lst	*lst;
 
 	fd = open(ac[1], O_RDONLY);
-	if (av != 2 && fd < 0)
+	if (av != 2 || fd < 0 || ft_strchr(ac[1], '.') == NULL || \
+			ft_strcmp(ft_strchr(ac[1], '.'), ".fdf") != 0)
 		ft_error("usage : ./fdf map_sample.fdf");
 	if (!(v = ft_memalloc(sizeof(t_env))))
 		ft_error("struct t_env ft_memalloc error");
@@ -88,10 +106,10 @@ int			main(int av, char **ac)
 	ft_create_img(v->mlx->mlx_ptr, &v->mlx->img, WIDTH, HEIGHT);
 	lst = fdf_parsing(v, fd);
 	map(lst, v);
+	initialization(v);
 	iso_view(v);
-	menu(v);
 	mlx_hook(v->mlx->win_ptr, 2, 0, key_press, v);
-	mlx_key_hook(v->mlx->win_ptr, key_release, v);
+	mlx_hook(v->mlx->win_ptr, 5, (1L << 2), button_press, v);
 	mlx_hook(v->mlx->win_ptr, 17, (1L << 17), &red_cross, v);
 	mlx_loop(v->mlx->mlx_ptr);
 	free_env(v);
