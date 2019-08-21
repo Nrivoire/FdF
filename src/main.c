@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/21 18:59:52 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/21 19:01:07 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,7 +98,7 @@ int			main(int av, char **ac)
 	t_lst	*lst;
 
 	fd = open(ac[1], O_RDONLY);
-	if (av != 2 || fd < 0 || ft_strchr(ac[1], '.') == NULL)
+	if (av != 2 || fd < 0)
 		ft_error("usage : ./fdf map_sample.fdf");
 	if (!(v = ft_memalloc(sizeof(t_env))))
 		ft_error("struct t_env ft_memalloc error");
