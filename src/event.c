@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 15:19:25 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/21 11:54:20 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/21 17:00:00 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,6 @@ void		make_color_with_z(t_env *v)
 		if (v->map[i].z >= 300)
 			v->cur[i].c = make_rgb(255, 255, 255, 1);
 	}
-	display_map(v);
 }
 
 void		change_y(t_env *v, int keycode)
@@ -42,7 +41,6 @@ void		change_y(t_env *v, int keycode)
 		v->cam_y += 10;
 	else
 		v->cam_y -= 10;
-	display_map(v);
 }
 
 void		change_x(t_env *v, int keycode)
@@ -51,7 +49,6 @@ void		change_x(t_env *v, int keycode)
 		v->cam_x += 10;
 	else
 		v->cam_x -= 10;
-	display_map(v);
 }
 
 void		change_z(t_env *v, int keycode)
@@ -60,7 +57,6 @@ void		change_z(t_env *v, int keycode)
 		v->elev += 0.05;
 	else
 		v->elev -= 0.05;
-	display_map(v);
 }
 
 void		zoom(t_env *v, int keycode)
@@ -72,5 +68,4 @@ void		zoom(t_env *v, int keycode)
 		v->scale += 0.5;
 	else if (v->scale > 1)
 		v->scale -= 0.5;
-	display_map(v);
 }

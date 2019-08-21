@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/07/19 04:39:53 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/21 14:05:13 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/21 17:01:07 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,6 @@ void		get_new_color(t_env *v)
 			v->cur[i].c.b = sin(0.2 * v->cur_color + 4 * M_PI / 3) * 127 + 128;
 		}
 	}
-	display_map(v);
 }
 
 void		event_rotation(t_env *v, int keycode)
@@ -56,7 +55,6 @@ void		event_rotation(t_env *v, int keycode)
 		v->rz += 0.05;
 	if (keycode == E)
 		v->rz -= 0.05;
-	display_map(v);
 }
 
 void		more_event(int keycode, t_env *v)
@@ -77,8 +75,6 @@ int			key_press(int keycode, t_env *v)
 {
 	if (keycode == ESC)
 		red_cross(v);
-	if (keycode)
-		v->key[keycode] = 1;
 	if (keycode == O)
 		orthogonal_view(v);
 	if (keycode == I)
@@ -95,5 +91,8 @@ int			key_press(int keycode, t_env *v)
 			|| keycode == Q || keycode == E)
 		event_rotation(v, keycode);
 	more_event(keycode, v);
+	display_map(v);
+	if (keycode)
+		v->key[keycode] = 1;
 	return (1);
 }

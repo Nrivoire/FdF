@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/21 14:58:40 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/21 18:59:52 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,6 +49,8 @@ void		menu(t_env *v)
 	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr, 39, 148,
 			0xFFFFFF, "Conic view : P");
 	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
+			10, 910, 0xFFFFFF, "Play with the conic view : 4, 5 or 1, 2");
+	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
 			10, 950, 0xFFFFFF, "Try directional keys");
 	mlx_string_put(v->mlx->mlx_ptr, v->mlx->win_ptr,
 			10, 980, 0xFFFFFF, "Rotate Camera : W, A, S, D, Q, E");
@@ -85,6 +87,8 @@ void		refresh_display(t_env *v)
 	}
 	if (v->view == 1 || v->view == 0)
 		projection(v);
+	if (v->view == 2)
+		projection_conic(v);
 }
 
 int			main(int av, char **ac)
@@ -94,8 +98,7 @@ int			main(int av, char **ac)
 	t_lst	*lst;
 
 	fd = open(ac[1], O_RDONLY);
-	if (av != 2 || fd < 0 || ft_strchr(ac[1], '.') == NULL || \
-			ft_strcmp(ft_strchr(ac[1], '.'), ".fdf") != 0)
+	if (av != 2 || fd < 0 || ft_strchr(ac[1], '.') == NULL)
 		ft_error("usage : ./fdf map_sample.fdf");
 	if (!(v = ft_memalloc(sizeof(t_env))))
 		ft_error("struct t_env ft_memalloc error");

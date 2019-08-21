@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/21 14:54:48 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/21 17:05:08 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -212,6 +212,7 @@ void				iso_view(t_env *v);
 void				orthogonal_view(t_env *v);
 void				conic_view(t_env *v);
 void				projection(t_env *v);
+void				projection_conic(t_env *v);
 void				refresh_display(t_env *v);
 
 void				zoom(t_env *v, int keycode);
