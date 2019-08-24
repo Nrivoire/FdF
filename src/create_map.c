@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 15:09:29 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/20 17:56:03 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/24 18:02:26 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,7 +54,8 @@ void		map(t_lst *elem, t_env *v)
 	i = -1;
 	while (++y < v->li && elem)
 	{
-		split = ft_strsplit(elem->line, ' ');
+		if (!(split = ft_strsplit(elem->line, ' ')))
+			ft_error("Error");
 		x = -1;
 		while (++x < v->col && ++i < v->max)
 		{
