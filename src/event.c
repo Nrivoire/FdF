@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 15:19:25 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/21 17:00:00 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/24 18:23:00 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -65,7 +65,7 @@ void		zoom(t_env *v, int keycode)
 
 	i = -1;
 	if (keycode == K)
-		v->scale += 0.5;
+		v->scale += 0.2;
 	else if (v->scale > 1)
-		v->scale -= 0.5;
+		v->scale -= 0.2;
 }
