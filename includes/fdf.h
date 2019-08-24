@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/21 17:05:08 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/24 15:52:08 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,15 +14,17 @@
 #ifndef FDF_H
 # define FDF_H
 
+# define BUFF_SIZE 128
 # define WIDTH 1600
 # define HEIGHT 1124
 # include "keys.h"
 # include "../libft/libft.h"
 # include "../minilibx_macos/mlx.h"
-# include "get_next_line.h"
 # include <unistd.h>
 # include <math.h>
 # include <stdlib.h>
+# include <sys/types.h>
+# include <fcntl.h>
 
 # define KEYPRESS					2
 # define KEYRELEASE					3
@@ -189,6 +191,7 @@ typedef struct		s_env
 /*
 **----------------------------------MAKE MAP------------------------------------
 */
+int					get_next_line(const int fd, char **line);
 void				ft_create_img(void *ptr, t_mlx_img *img, int w, int h);
 void				ft_error(char *str);
 int					ft_absolu(int nb);

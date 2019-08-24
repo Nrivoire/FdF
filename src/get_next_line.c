@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/27 13:27:22 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/20 17:11:04 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/24 17:50:28 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,8 @@ static char			*ft_static(char *tmp, char *lf_ov)
 	leak = ft_strjoin(lf_ov, tmp);
 	if (tmp)
 		free(tmp);
-	ft_strdel(&lf_ov);
+	if (lf_ov)
+		ft_strdel(&lf_ov);
 	tmp = leak;
 	return (tmp);
 }
@@ -30,6 +31,7 @@ static char			*ft_find_line(char *tmp)
 	int				len_n;
 	char			*line;
 	static char		*lf_ov;
+	size_t			lenght;
 
 	if (lf_ov)
 		tmp = ft_static(tmp, lf_ov);
@@ -42,9 +44,10 @@ static char			*ft_find_line(char *tmp)
 	len_n = ft_strcspn(tmp, "\n");
 	line = ft_strnew(len_n);
 	line = ft_strncpy(line, tmp, len_n);
-	if (len_n < (int)ft_strlen(tmp) && tmp != NULL)
-		lf_ov = ft_strsub(tmp, len_n + 1, ft_strlen(ft_strchr(tmp, '\n')));
-	else
+	lenght = ft_strlen(ft_strchr(tmp, '\n'));
+	if (len_n < (int)ft_strlen(tmp) || tmp != NULL)
+		lf_ov = ft_strsub(tmp, len_n + 1, lenght);
+	else if (lf_ov)
 		ft_strdel(&lf_ov);
 	ft_strdel(&tmp);
 	return (line);

@@ -6,7 +6,7 @@
 #    By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/06/14 18:19:22 by nrivoire     #+#   ##    ##    #+#        #
-#    Updated: 2019/08/21 13:35:52 by nrivoire    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/08/24 17:48:15 by nrivoire    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -94,7 +94,7 @@ $(NAME): $(OBJ)
 libft.a:
 	@make -C ./libft/
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC)
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) libft/libft.a
 	@mkdir -p $(OBJ_PATH) $(OBJ_PATH)/$(SRC_SUP)
 	@$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ -c $<
 	@printf "\r$(YELLOW)$(BOLD)[COMPILE] $(END) $(<:.c=)..."

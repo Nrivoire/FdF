@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/18 16:25:44 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/21 19:01:07 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/24 17:51:42 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -97,18 +97,18 @@ int			main(int av, char **ac)
 	int		fd;
 	t_lst	*lst;
 
-	fd = open(ac[1], O_RDONLY);
-	if (av != 2 || fd < 0)
+	fd = -1;
+	if (av != 2 || (fd = open(ac[1], O_RDONLY)) < 0)
 		ft_error("usage : ./fdf map_sample.fdf");
 	if (!(v = ft_memalloc(sizeof(t_env))))
 		ft_error("struct t_env ft_memalloc error");
 	if (!(v->mlx = ft_memalloc(sizeof(t_mlx))))
 		ft_error("struct t_mlx ft_memalloc error");
+	lst = fdf_parsing(v, fd);
+	map(lst, v);
 	v->mlx->mlx_ptr = mlx_init();
 	v->mlx->win_ptr = mlx_new_window(v->mlx->mlx_ptr, WIDTH, HEIGHT, "fdf");
 	ft_create_img(v->mlx->mlx_ptr, &v->mlx->img, WIDTH, HEIGHT);
-	lst = fdf_parsing(v, fd);
-	map(lst, v);
 	initialization(v);
 	iso_view(v);
 	mlx_hook(v->mlx->win_ptr, 2, 0, key_press, v);
