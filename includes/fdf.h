@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/20 22:07:09 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/24 15:52:08 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/24 18:32:16 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -172,8 +172,6 @@ typedef struct		s_env
 	double			elev;
 	double			var;
 	int				horizon;
-	int				min_z;
-	int				max_z;
 	int				col;
 	int				li;
 	int				max;

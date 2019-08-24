@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/28 19:13:41 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/24 18:21:13 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/24 18:33:06 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,7 +51,7 @@ t_bressen		init_bresen(t_real m1, t_real m2)
 	b.err = (b.dx > b.dy ? b.dx : -b.dy) / 2;
 	return (b);
 }
- 
+
 void			put_segment(t_real m1, t_real m2, t_env *v)
 {
 	t_bressen	b;

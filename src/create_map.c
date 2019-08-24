@@ -6,28 +6,12 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 15:09:29 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/24 18:02:26 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/24 18:34:38 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void		max_min_z(t_env *v)
-{
-	int		i;
-
-	i = -1;
-	v->min_z = 1;
-	v->max_z = 0;
-	while (++i < v->max)
-	{
-		if (v->map[i].z > v->max_z)
-			v->max_z = v->map[i].z;
-		if (v->map[i].z < v->min_z)
-			v->min_z = v->map[i].z;
-	}
-}
 
 t_map		create_map(char *split, int x, int y, char *d)
 {
@@ -66,5 +50,4 @@ void		map(t_lst *elem, t_env *v)
 		if (split)
 			free_tab(split, v->col);
 	}
-	max_min_z(v);
 }
