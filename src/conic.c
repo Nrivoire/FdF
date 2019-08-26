@@ -6,7 +6,7 @@
 /*   By: nrivoire <nrivoire@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/21 13:34:21 by nrivoire     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/24 15:47:54 by nrivoire    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/26 13:59:03 by nrivoire    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,8 +52,7 @@ void		projection_conic(t_env *v)
 	while (++inc < v->max)
 	{
 		deg = v->map[inc].x * M_PI / (v->col - 1) - M_PI / 2;
-		v->cur[inc].x = (v->map[inc].y + v->horizon) * sin(deg * v->var);
-		v->cur[inc].y = (v->map[inc].y + v->horizon) * cos(deg * v->var) -
-				v->map[inc].z * v->elev;
+		v->cur[inc].x = ((v->map[inc].y + (v->map[inc].z * -v->elev)) + v->horizon) * sin(deg * v->var);
+		v->cur[inc].y = ((v->map[inc].y + (v->map[inc].z * -v->elev)) + v->horizon) * cos(deg * v->var);
 	}
 }
